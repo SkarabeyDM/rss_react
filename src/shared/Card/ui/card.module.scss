@@ -1,0 +1,45 @@
+.card {
+  background-color: #333;
+  padding: 1rem;
+  border-radius: 2rem;
+  width: fit-content;
+  max-width: 100%;
+
+  &__title {
+    margin: 0.5rem 0;
+  }
+
+  &__image {
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 15rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  &__detail {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0.5rem;
+
+    &:nth-child(even) {
+      background-color: #383838;
+    }
+
+    &_type {
+      font-weight: bold;
+    }
+
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
