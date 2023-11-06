@@ -10,7 +10,7 @@ type SearchFormState = {
 };
 
 export class SearchForm extends Component<SearchFormProps, SearchFormState> {
-  constructor(props = {onSubmit: () => {}}) {
+  constructor(props = { onSubmit: () => {} }) {
     super(props);
 
     this.state = {
@@ -22,14 +22,14 @@ export class SearchForm extends Component<SearchFormProps, SearchFormState> {
   }
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-    this.setState({ query: value });
+    this.setState({ query: event.target.value });
   }
 
-  handleSubmit() {
+  handleSubmit(event: React.ChangeEvent<HTMLFormElement>) {
     const { query } = this.state;
     localStorage.setItem('query', query);
     this.props.onSubmit(query);
+    event.preventDefault();
   }
 
   componentDidMount() {
