@@ -1,54 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Section } from '../../../shared/Section';
 
 type SearchFormProps = {
   onSubmit: (query: string) => void;
+  startSearch: string;
 };
 
-type SearchFormState = {
-  query: string;
-};
+export function SearchForm({ onSubmit, startSearch }: SearchFormProps) {
+  const [search, setSearch] = useState(startSearch);
 
-export class SearchForm extends Component<SearchFormProps, SearchFormState> {
-  constructor(props = { onSubmit: () => {} }) {
-    super(props);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
 
-    this.state = {
-      query: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ query: event.target.value });
-  }
-
-  handleSubmit(event: React.ChangeEvent<HTMLFormElement>) {
-    const { query } = this.state;
-    localStorage.setItem('query', query);
-    this.props.onSubmit(query);
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+    onSubmit(search);
     event.preventDefault();
-  }
+  };
 
-  componentDidMount() {
-    this.setState({ query: localStorage.getItem('query') ?? '' });
-  }
-
-  render() {
-    return (
-      <Section>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            onChange={this.handleChange}
-            placeholder="Enter character's name"
-            value={this.state.query}
-          />
-          <input type="submit" value={'Search'} />
-        </form>
-      </Section>
-    );
-  }
+  return (
+    <Section>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          onChange={handleChange}
+          placeholder="Enter character's name"
+          value={search}
+        />
+        <input type="submit" value={'Search'} />
+      </form>
+    </Section>
+  );
 }

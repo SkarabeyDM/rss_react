@@ -1,38 +1,26 @@
-import React, { Component } from 'react';
-import styles from './card.module.scss';
+import styles from './Card.module.scss';
 import { CardData } from '../../../app/api';
+import { PropertyLine } from '../../PropertyLine';
 
 export type CardProps = CardData;
 
-export class Card extends Component<CardProps> {
-  constructor(props: CardProps) {
-    super(props);
-  }
-  render() {
-    const { images, name, supertype, types, hp, artist, level } = this.props;
+export function Card(props: CardProps) {
+  const { images, name, supertype, types, hp, artist, level } = props;
 
-    const detailStroke = (type: string, value: string | undefined) => (
-      <div className={styles.card__detail}>
-        <span className={styles.card__detail_type}>{type}:</span>
-        <span>{value ?? '--'}</span>
-      </div>
-    );
-
-    return (
-      <div className={styles.card}>
-        <img
+  return (
+    <div className={styles.card}>
+      <img
         className={styles.card__image}
-          src={images.small}
-          alt={`${name}${artist ? ` by ${artist}` : ''}`}
-        />
-        <h3 className={styles.card__title}>{name}</h3>
-        <div className={styles.card__details}>
-          {detailStroke('Supertype', supertype)}
-          {detailStroke('Level', level)}
-          {detailStroke('HP', hp)}
-          {detailStroke('Types', types?.join(', '))}
-        </div>
+        src={images.small}
+        alt={`${name}${artist ? ` by ${artist}` : ''}`}
+      />
+      <h3 className={styles.card__title}>{name}</h3>
+      <div className={styles.card__details}>
+        <PropertyLine type="Supertype" value={supertype} />
+        <PropertyLine type="Level" value={level} />
+        <PropertyLine type="HP" value={hp} />
+        <PropertyLine type="Types" value={types?.join(', ')} />
       </div>
-    );
-  }
+    </div>
+  );
 }

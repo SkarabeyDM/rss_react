@@ -1,9 +1,7 @@
-import React, { Component, PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 type SectionProps = PropsWithChildren;
 
-export class Section extends Component<SectionProps> {
-  render() {
-    return <section className="section">{this.props.children}</section>;
-  }
+export function Section({ children }: SectionProps) {
+  return <section className="section">{children}</section>;
 }

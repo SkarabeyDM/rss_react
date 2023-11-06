@@ -9,12 +9,6 @@
     margin: 0.5rem 0;
   }
 
-  &__image {
-    border-radius: 1rem;
-    width: 100%;
-    max-width: 15rem;
-  }
-
   &__details {
     display: flex;
     flex-direction: column;
@@ -22,20 +16,10 @@
     overflow: hidden;
   }
 
-  &__detail {
-    display: flex;
-    justify-content: space-between;
-
-    padding: 0.5rem;
-
-    &:nth-child(even) {
-      background-color: #383838;
-    }
-
-    &_type {
-      font-weight: bold;
-    }
-
+  &__image {
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 15rem;
   }
 
   &:hover {
