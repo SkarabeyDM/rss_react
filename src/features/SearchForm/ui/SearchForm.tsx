@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Section } from '../../../shared/Section';
 
 type SearchFormProps = {
   onSubmit: (query: string) => void;
@@ -19,7 +18,6 @@ export function SearchForm({ onSubmit, startSearch }: SearchFormProps) {
   };
 
   return (
-    <Section>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -29,6 +27,5 @@ export function SearchForm({ onSubmit, startSearch }: SearchFormProps) {
         />
         <input type="submit" value={'Search'} />
       </form>
-    </Section>
   );
 }
