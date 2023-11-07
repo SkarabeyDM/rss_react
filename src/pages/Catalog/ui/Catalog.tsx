@@ -1,39 +1,54 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SearchForm } from '../../../features/SearchForm';
 import { CardBrowser } from '../../../widgets/CardBrowser';
+import { CardData, PokemonAPI, SearchResponse } from '../../../shared/model';
+import { useSearchParams } from 'react-router-dom';
+import { useQuery } from '../../../shared/model/hooks';
 import { Section } from '../../../shared/Section';
 
-export type CatalogState = {
+export type CatalogStateQuery = {
   search: string;
-  result: SearchResponse<CardData> | null;
+  page: number;
 };
 
+export type CatalogStateResults = SearchResponse<CardData> | null;
+
 export function Catalog() {
-  const [state, setState] = useState<CatalogState>({
-    search: '',
-    result: null,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { searchQuery } = useQuery();
+  const [results, setResults] = useState<CatalogStateResults>(null);
 
-  const handleSearch = async (search: string, page = 1) => {
-    const response = await PokemonAPI.getCardsByQuery({
-      q: `name:${search}*`,
-      page,
-      pageSize: 20,
-    });
-
-    setState({ search, result: response });
+  const handleSearch = (search: string, page = 1) => {
+    searchParams.set('search', search);
+    searchParams.set('page', page.toString());
+    setSearchParams(searchParams);
   };
+
+  useEffect(() => {
+    const loadData = async () => {
+      console.log(searchQuery);
+      const response = await PokemonAPI.getCardsByQuery({
+        q: `name:${searchQuery.str ?? ''}*`,
+        page: searchQuery.page,
+        pageSize: 20,
+      });
+
+      setResults(response);
+    };
+
+    loadData();
+  }, [searchQuery]);
 
   return (
     <>
       <Section>
         <SearchForm
           onSubmit={handleSearch}
-          startSearch={state.search.str ?? ''}
+          startSearch={searchQuery.str ?? ''}
         />
       </Section>
       <Section>
-        <CardBrowser cards={state.results?.data ?? []} />
+        <CardBrowser cards={results?.data ?? []} />
       </Section>
     </>
   );
