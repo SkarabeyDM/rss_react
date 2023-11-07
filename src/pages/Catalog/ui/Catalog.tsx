@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SearchForm } from '../../../features/SearchForm';
-import { CardList } from '../../../features/CardList';
-import { CardData, PokemonAPI, SearchResponse } from '../../../app/api';
+import { CardBrowser } from '../../../widgets/CardBrowser';
+import { Section } from '../../../shared/Section';
 
 export type CatalogState = {
   search: string;
@@ -25,9 +25,16 @@ export function Catalog() {
   };
 
   return (
-    <div>
-      <SearchForm onSubmit={handleSearch} startSearch="" />
-      <CardList cards={state.result?.data ?? []} />
-    </div>
+    <>
+      <Section>
+        <SearchForm
+          onSubmit={handleSearch}
+          startSearch={state.search.str ?? ''}
+        />
+      </Section>
+      <Section>
+        <CardBrowser cards={state.results?.data ?? []} />
+      </Section>
+    </>
   );
 }
