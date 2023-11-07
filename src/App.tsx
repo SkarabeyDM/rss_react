@@ -1,5 +1,5 @@
 import './App.scss';
-import { Catalog } from './widgets/Catalog';
+import { Catalog } from './pages/Catalog';
 
 export function App() {
   return (
