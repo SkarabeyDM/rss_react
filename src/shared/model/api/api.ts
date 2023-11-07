@@ -1,6 +1,6 @@
 import { type PokemonTCG } from 'pokemon-tcg-sdk-typescript';
 import { apiKeyHeader, baseEndpoint, EndpointVariants } from './constants';
-import { CardData, SearchResponse } from './types';
+import { CardData, SearchResponse } from '../types';
 
 export class PokemonAPI {
   static async getCardsByQuery(params: PokemonTCG.Parameter) {

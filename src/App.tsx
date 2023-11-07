@@ -1,10 +1,8 @@
 import './App.scss';
-import { Catalog } from './pages/Catalog';
+import { AppRoutes } from './app/api/Routes';
 
 export function App() {
   return (
-    <>
-      <Catalog />
-    </>
+    <AppRoutes />
   );
 }

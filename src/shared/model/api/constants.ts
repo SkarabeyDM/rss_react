@@ -13,3 +13,9 @@ export enum EndpointVariants {
   Supertypes = 'supertypes',
   Rarities = 'rarities',
 }
+
+export enum Supertype {
+  Energy = 'Energy',
+  Pokemon = 'Pok\u00E9mon',
+  Trainer = 'Trainer',
+}
