@@ -5,6 +5,11 @@
   width: fit-content;
   max-width: 100%;
 
+  transition: all 150ms ease-out;
+
+  outline: var(--supertype-color-inactive) 0.1rem solid;
+  outline-offset: -0.5rem;
+
   &__title {
     margin: 0.5rem 0;
   }
@@ -22,8 +27,32 @@
     max-width: 15rem;
   }
 
-  &:hover {
+  &:hover,
+  &.active {
     cursor: pointer;
     transform: scale(1.05);
+    z-index: 1;
+    box-shadow:
+      0 1rem 2rem rgba($color: black, $alpha: 0.7),
+      0 0 0.25rem rgba($color: black, $alpha: 0.7);
+  }
+
+  &.active {
+    outline-color: var(--supertype-color-active);
+  }
+}
+
+.supertype {
+  &__trainer {
+    --supertype-color-active: rgb(255, 69, 69);
+    --supertype-color-inactive: rgba(255, 69, 69, 0.3);
+  }
+  &__pokemon {
+    --supertype-color-active: rgb(230, 230, 61);
+    --supertype-color-inactive: rgba(255, 255, 0, 0.3);
+  }
+  &__energy {
+    --supertype-color-active: rgb(222, 222, 222);
+    --supertype-color-inactive: rgba(222, 222, 222, 0.3);
   }
 }
