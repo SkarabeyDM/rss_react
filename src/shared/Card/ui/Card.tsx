@@ -1,14 +1,22 @@
 import styles from './Card.module.scss';
 import { CardData } from '../../../app/api';
 import { PropertyLine } from '../../PropertyLine';
+import { useSearchParams } from 'react-router-dom';
 
 export type CardProps = CardData;
 
 export function Card(props: CardProps) {
-  const { images, name, supertype, types, hp, artist, level } = props;
+  const { images, name, supertype, types, hp, artist, level, id } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handleClick = () => {
+    searchParams.set('cardId', id);
+    setSearchParams(searchParams);
+  };
 
   return (
-    <div className={styles.card}>
+    <button
+      onClick={handleClick}
+    >
       <img
         className={styles.card__image}
         src={images.small}
@@ -21,6 +29,7 @@ export function Card(props: CardProps) {
         <PropertyLine type="HP" value={hp} />
         <PropertyLine type="Types" value={types?.join(', ')} />
       </div>
-    </div>
+    </button>
   );
 }
+
