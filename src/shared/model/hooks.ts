@@ -23,7 +23,6 @@ export const useQuery = () => {
     };
 
     if (!compareSimpleObjects(searchQuery, newSearchQuery)) {
-      console.log("Set search query:", searchQuery, newSearchQuery)
       setSearchQuery(newSearchQuery);
     }
 

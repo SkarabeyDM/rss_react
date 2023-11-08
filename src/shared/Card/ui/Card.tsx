@@ -15,7 +15,6 @@ export function Card(props: CardProps) {
   const { cardId } = useQuery();
 
   useEffect(() => {
-    console.log({ cardId, id });
     setIsActive(cardId === id);
   }, [cardId]);
 
