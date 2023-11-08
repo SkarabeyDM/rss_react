@@ -1,33 +1,31 @@
 import styles from './Card.module.scss';
 import { CardData, Supertype } from '../../model';
 import { PropertyLine } from '../../PropertyLine';
-import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useQuery } from '../../model/hooks';
+import { useCardId } from '../../model/hooks';
 
 export type CardProps = CardData;
+
+export const SUPERTYPES = {
+  [Supertype.Energy]: styles.supertype__energy,
+  [Supertype.Trainer]: styles.supertype__trainer,
+  [Supertype.Pokemon]: styles.supertype__pokemon,
+};
 
 export function Card(props: CardProps) {
   const { images, name, supertype, types, hp, artist, level, id } = props;
   const [isActive, setIsActive] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
 
-  const { cardId } = useQuery();
+  const { cardId, setCardId } = useCardId();
 
   useEffect(() => {
     setIsActive(cardId === id);
   }, [cardId]);
 
   const handleClick = () => {
-    searchParams.set('cardId', id);
-    setSearchParams(searchParams);
+    setCardId(id);
   };
 
-  const SUPERTYPES = {
-    [Supertype.Energy]: styles.supertype__energy,
-    [Supertype.Trainer]: styles.supertype__trainer,
-    [Supertype.Pokemon]: styles.supertype__pokemon,
-  };
 
   return (
     <button
@@ -51,4 +49,3 @@ export function Card(props: CardProps) {
     </button>
   );
 }
-

@@ -1,30 +1,67 @@
 .card {
-  background-color: #333;
-  padding: 1rem;
-  border-radius: 2rem;
-  width: fit-content;
-  max-width: 100%;
+  &,
+  &_detailed {
+    background-color: #333;
+    padding: 1rem;
+    border-radius: 2rem;
+    width: fit-content;
+    max-width: 100%;
 
-  transition: all 150ms ease-out;
+    transition: all 150ms ease-out;
 
-  outline: var(--supertype-color-inactive) 0.1rem solid;
-  outline-offset: -0.5rem;
+    outline: var(--supertype-color-inactive) 0.1rem solid;
+    outline-offset: -0.5rem;
 
-  &__title {
-    margin: 0.5rem 0;
+    &__title {
+      margin: 0.5rem 0;
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    &__image {
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 15rem;
+    }
   }
 
-  &__details {
-    display: flex;
-    flex-direction: column;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-
-  &__image {
-    border-radius: 1rem;
+  &_detailed{
     width: 100%;
-    max-width: 15rem;
+    height: fit-content;
+    position: relative;
+
+    &__image {
+      border-radius: 1rem;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    &__close_button{
+      position: absolute;
+      top: .75rem;
+      right: .75rem;
+      height: 2rem;
+      aspect-ratio: 1;
+
+      background-color: red;
+      opacity: .25;
+
+      border-radius: .25rem;
+      border-top-right-radius: 1.5rem;
+      &::before{
+        content: "X";
+      }
+
+      &:hover{
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
   }
 
   &:hover,
