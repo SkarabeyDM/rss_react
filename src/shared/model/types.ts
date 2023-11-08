@@ -10,6 +10,10 @@ export type SearchResponse<T> = {
   page: number;
 };
 
+export type CardIdResponse = {
+  data: CardData;
+};
+
 export type CardData = PokemonTCG.Card & {
   level?: string;
 };
