@@ -4,6 +4,7 @@ import { Card } from '../../../shared/Card';
 import { CardData, PokemonAPI, SearchResponse } from '../../../shared/model';
 import styles from './CardBrowser.module.scss';
 import { useQuery } from '../../../shared/model/hooks';
+import { CardDetailed } from '../../../shared/Card/ui/Card.Detailed';
 
 export type CardBrowserProps = ComponentProps<'div'>;
 
@@ -26,7 +27,7 @@ export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
   }, [searchQuery]);
 
   if (!results) return 'Loading...';
-  if (results.totalCount === 0) return 'No results :(';
+  if (results.totalCount === 0) return 'No results (°◠°)';
 
   const { data, totalCount, page, pageSize } = results;
   return (
@@ -34,13 +35,20 @@ export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
       className={`${styles.card_browser} ${className ?? ''}`}
       {...otherProps}
     >
-      <div className={styles.card_browser}>
-        {data.map((card) => (
-          <Card key={card.id} {...card} />
-        ))}
+      <div className={`${styles.card_browser__paginator}`}>
+        <div className={styles.card_browser__container}>
+          <div className={styles.card_browser__list}>
+            {data.map((card) => (
+              <Card key={card.id} {...card} />
+            ))}
+          </div>
+        </div>
+        <div className={`${styles.card_browser__container}`}>
+          <Paginator {...{ totalCount, page, pageSize }} />
+        </div>
       </div>
-      <div className={styles.card_browser}>
-        <Paginator {...{ totalCount, page, pageSize }} />
+      <div className={`${styles.card_browser__container} ${styles.card_browser__card_details}`}>
+        <CardDetailed />
       </div>
     </div>
   );
