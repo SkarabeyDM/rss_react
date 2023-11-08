@@ -44,10 +44,10 @@ export function Card(props: CardProps) {
       />
       <h3 className={styles.card__title}>{name}</h3>
       <div className={styles.card__details}>
-        <PropertyLine type="Supertype" value={supertype} />
-        <PropertyLine type="Level" value={level} />
-        <PropertyLine type="HP" value={hp} />
-        <PropertyLine type="Types" value={types?.join(', ')} />
+        <PropertyLine name="Supertype" value={supertype} />
+        <PropertyLine name="Level" value={level} />
+        <PropertyLine name="HP" value={hp} />
+        <PropertyLine name="Types" value={types?.join(', ')} />
       </div>
     </button>
   );
