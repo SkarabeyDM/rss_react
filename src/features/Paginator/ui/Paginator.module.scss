@@ -35,6 +35,9 @@
 }
 .last {
   @include beforeCharacter('\>\>');
+  &:hover:not(:disabled){
+    @include beforeCharacter(attr(value));
+  }
 }
 
 .prev,
