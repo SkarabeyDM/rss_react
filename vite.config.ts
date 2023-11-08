@@ -10,11 +10,9 @@ export default ({ mode }) => {
     ...loadEnv(mode, process.cwd()),
   };
 
-  console.log(process.env.POKEMONTCG_API_KEY);
-
   return defineConfig({
     plugins: [react()],
-    base: '',
+    base: '/rss_react/',
     define: {
       'process.env': process.env,
     },

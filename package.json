@@ -1,12 +1,13 @@
 {
   "name": "rss_react",
+  "homepage": "https://skarabeydm.github.io/rss_react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "deploy": "gh-pages -d dist -e components",
+    "deploy": "gh-pages -d dist",
     "build:deploy": "npm run build && npm run deploy",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --ext .ts,.tsx ./src",
