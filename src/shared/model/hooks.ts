@@ -12,9 +12,6 @@ export const useQuery = () => {
     str: searchParams.get('search'),
     page: +(searchParams.get('page') ?? 1),
   });
-  const [cardId, setCardId] = useState<string | null>(
-    searchParams.get('cardId')
-  );
 
   useEffect(() => {
     const newSearchQuery = {
@@ -25,9 +22,30 @@ export const useQuery = () => {
     if (!compareSimpleObjects(searchQuery, newSearchQuery)) {
       setSearchQuery(newSearchQuery);
     }
-
-    setCardId(searchParams.get('cardId'));
   }, [searchParams, setSearchParams]);
 
-  return { searchQuery, cardId };
+  return { searchQuery, setSearchQuery };
+};
+
+export const useCardId = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [cardId, setId] = useState(searchParams.get('cardId'));
+
+  useEffect(() => {
+    setId(searchParams.get('cardId'));
+  }, [searchParams, setSearchParams]);
+
+  const setCardId = (id: string | null) => {
+    console.log(id)
+    if (id === null) {
+      console.log("delete")
+      searchParams.delete('cardId');
+    } else {
+      console.log("set")
+      searchParams.set('cardId', id);
+    }
+    setSearchParams(searchParams)
+  };
+
+  return { cardId, setCardId };
 };
