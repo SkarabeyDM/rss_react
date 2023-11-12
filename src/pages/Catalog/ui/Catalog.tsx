@@ -1,17 +1,16 @@
 import React from 'react';
 import { SearchForm } from '../../../features/SearchForm';
 import { CardBrowser } from '../../../widgets/CardBrowser';
-import { Section } from '../../../shared/Section';
 
 export function Catalog() {
   return (
     <>
-      <Section>
+      <section>
         <SearchForm />
-      </Section>
-      <Section>
+      </section>
+      <section>
         <CardBrowser />
-      </Section>
+      </section>
     </>
   );
 }
