@@ -6,6 +6,7 @@
     border-radius: 2rem;
     width: fit-content;
     max-width: 100%;
+    max-height: fit-content;
 
     transition: all 150ms ease-out;
 
@@ -20,7 +21,7 @@
       display: flex;
       flex-direction: column;
       border-radius: 1rem;
-      overflow: hidden;
+      overflow: auto;
     }
 
     &__image {
@@ -30,34 +31,40 @@
     }
   }
 
-  &_detailed{
-    width: 100%;
+  &_detailed {
+    width: fit-content;
     height: fit-content;
     position: relative;
+
+    &__wrapper {
+      height: 100%;
+      overflow: auto;
+    }
 
     &__image {
       border-radius: 1rem;
       width: 100%;
       max-width: 100%;
+      object-fit: contain;
     }
 
-    &__close_button{
+    &__close_button {
       position: absolute;
-      top: .75rem;
-      right: .75rem;
+      top: 0.75rem;
+      right: 0.75rem;
       height: 2rem;
       aspect-ratio: 1;
 
       background-color: red;
-      opacity: .25;
+      opacity: 0.25;
 
-      border-radius: .25rem;
+      border-radius: 0.25rem;
       border-top-right-radius: 1.5rem;
-      &::before{
-        content: "X";
+      &::before {
+        content: 'X';
       }
 
-      &:hover{
+      &:hover {
         opacity: 1;
         cursor: pointer;
       }

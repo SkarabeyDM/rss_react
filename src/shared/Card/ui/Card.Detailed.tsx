@@ -44,36 +44,38 @@ export function CardDetailed() {
   } = data;
 
   return (
-    <div
-      className={`${styles.card_detailed} ${SUPERTYPES[supertype]} ${
-        isActive ? styles.active : ''
-      } `}
-    >
-      <button
-        className={styles.card_detailed__close_button}
-        onClick={() => {
-          setCardId(null);
-        }}
-      />
-      <img
-        className={styles.card_detailed__image}
-        src={images.large}
-        alt={`${name}${artist ? ` by ${artist}` : ''}`}
-      />
-      <PropertyLine name='Artist' value={artist}/>
-      <h3 className={styles.card_detailed__title}>{name}</h3>
-      <div className={styles.card_detailed__details}>
-        <PropertyLine name="Supertype" value={supertype} />
-        <PropertyLine name="Level" value={level} />
-        <PropertyLine name="HP" value={hp} />
-        <PropertyLine name="Types" value={types?.join(', ')} />
-        <PropertyLine name="Subtypes" value={subtypes?.join(', ')} />
-        <PropertyLine name="Rarity" value={rarity} />
-        <PropertyLine name="Set" value={set.name} />
-        <PropertyLine
-          name="Attacks"
-          value={attacks?.map((attack) => attack.name).join(', ')}
+    <div className={styles.card_detailed__wrapper}>
+      <div
+        className={`${styles.card_detailed} ${SUPERTYPES[supertype]} ${
+          isActive ? styles.active : ''
+        } `}
+      >
+        <button
+          className={styles.card_detailed__close_button}
+          onClick={() => {
+            setCardId(null);
+          }}
         />
+        <img
+          className={styles.card_detailed__image}
+          src={images.large}
+          alt={`${name}${artist ? ` by ${artist}` : ''}`}
+        />
+        <PropertyLine name="Artist" value={artist} />
+        <h3 className={styles.card_detailed__title}>{name}</h3>
+        <div className={styles.card_detailed__details}>
+          <PropertyLine name="Supertype" value={supertype} />
+          <PropertyLine name="Level" value={level} />
+          <PropertyLine name="HP" value={hp} />
+          <PropertyLine name="Types" value={types} />
+          <PropertyLine name="Subtypes" value={subtypes} />
+          <PropertyLine name="Rarity" value={rarity} />
+          <PropertyLine name="Set" value={set.name} />
+          <PropertyLine
+            name="Attacks"
+            value={attacks?.map((attack) => attack.name)}
+          />
+        </div>
       </div>
     </div>
   );

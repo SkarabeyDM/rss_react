@@ -26,12 +26,12 @@ export function Card(props: CardProps) {
     setCardId(id);
   };
 
-
   return (
     <button
       className={`${styles.card} ${SUPERTYPES[supertype]} ${
         isActive ? styles.active : ''
       } `}
+      id={id}
       onClick={handleClick}
     >
       <img
@@ -44,7 +44,7 @@ export function Card(props: CardProps) {
         <PropertyLine name="Supertype" value={supertype} />
         <PropertyLine name="Level" value={level} />
         <PropertyLine name="HP" value={hp} />
-        <PropertyLine name="Types" value={types?.join(', ')} />
+        <PropertyLine name="Types" value={types} />
       </div>
     </button>
   );
