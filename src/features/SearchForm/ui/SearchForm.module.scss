@@ -1,0 +1,25 @@
+.search_form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    &_text,
+    &_button {
+      display: inline-block;
+      vertical-align: baseline;
+      border: none;
+      border-radius: 0;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    &_text {
+      border-radius: 2rem 0 0 2rem;
+    }
+    &_button {
+      cursor: pointer;
+      border-radius: 0 2rem 2rem 0;
+    }
+  }
+}

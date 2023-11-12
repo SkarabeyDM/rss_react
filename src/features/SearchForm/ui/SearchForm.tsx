@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import styles from './SearchForm.module.scss';
 
 export function SearchForm() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,14 +18,19 @@ export function SearchForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.search_form} onSubmit={handleSubmit}>
       <input
+        className={styles.search_form__input_text}
         type="text"
         onChange={handleChange}
         placeholder="Enter character's name"
         value={search}
       />
-      <input type="submit" value={'Search'} />
+      <input
+        className={styles.search_form__input_button}
+        type="submit"
+        value={'Search'}
+      />
     </form>
   );
 }
