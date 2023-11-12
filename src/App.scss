@@ -1,0 +1,25 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  width: 100%;
+  height: 100dvh;
+  margin: 0 auto;
+  padding: 0.5rem;
+  text-align: center;
+
+  transition: all ease-in-out 150ms;
+}
+
+* {
+  &,
+  &::after,
+  &::before {
+    transition: inherit;
+    max-height: 100%;
+  }
+}
+
+button {
+  background-color: #383838;
+}
