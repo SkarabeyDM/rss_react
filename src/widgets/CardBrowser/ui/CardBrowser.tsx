@@ -36,20 +36,14 @@ export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
       {...otherProps}
     >
       <div className={`${styles.card_browser__paginator}`}>
-        <div className={styles.card_browser__container}>
-          <div className={styles.card_browser__list}>
-            {data.map((card) => (
-              <Card key={card.id} {...card} />
-            ))}
-          </div>
+        <div className={styles.card_browser__list}>
+          {data.map((card) => (
+            <Card key={card.id} {...card} />
+          ))}
         </div>
-        <div className={`${styles.card_browser__container}`}>
-          <Paginator {...{ totalCount, page, pageSize }} />
-        </div>
+        <Paginator {...{ totalCount, page, pageSize }} />
       </div>
-      <div className={`${styles.card_browser__container} ${styles.card_browser__card_details}`}>
-        <CardDetailed />
-      </div>
+      <CardDetailed />
     </div>
   );
 }
