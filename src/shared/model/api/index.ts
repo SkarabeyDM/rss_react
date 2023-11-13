@@ -1,2 +1,2 @@
-export * from "./api"
-export * from "./constants"
+export * as PokemonAPI from './api';
+export * from './constants';

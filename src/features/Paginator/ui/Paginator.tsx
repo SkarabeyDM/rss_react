@@ -1,28 +1,26 @@
-import React, { ComponentProps } from 'react';
-import { CardData, SearchResponse } from '../../../shared/model';
+import React, { ComponentProps, useContext } from 'react';
 import { PaginatorButton } from './Paginator.Button';
 import { useSearchParams } from 'react-router-dom';
 import styles from './Paginator.module.scss';
+import { SearchContext } from '../../../shared/сontext';
 
-export type PaginatorProps = ComponentProps<'div'> &
-  Pick<SearchResponse<CardData>, 'totalCount' | 'page' | 'pageSize'>;
+export type PaginatorProps = ComponentProps<'div'>;
+export function Paginator({ className, ...otherProps }: PaginatorProps) {
+  const { response } = useContext(SearchContext);
+  const [, setSearchParams] = useSearchParams();
 
-export function Paginator({
-  totalCount,
-  page,
-  pageSize,
-  className,
-  ...otherProps
-}: PaginatorProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  if (response === null) return null;
+  const { totalCount, page, pageSize } = response;
   const totalPages = Math.ceil(totalCount / pageSize);
   if (totalPages === 1) return null;
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    searchParams.set('page', event.currentTarget.value);
-    setSearchParams(searchParams);
+    setSearchParams((searchParams) => {
+      searchParams.set('page', event.currentTarget.value);
+      return searchParams;
+    });
   };
 
   return (

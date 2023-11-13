@@ -9,13 +9,13 @@ export const useQuery = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState({
-    str: searchParams.get('search'),
+    search: searchParams.get('search'),
     page: +(searchParams.get('page') ?? 1),
   });
 
   useEffect(() => {
     const newSearchQuery = {
-      str: searchParams.get('search'),
+      search: searchParams.get('search'),
       page: +(searchParams.get('page') ?? 1),
     };
 
@@ -36,12 +36,9 @@ export const useCardId = () => {
   }, [searchParams, setSearchParams]);
 
   const setCardId = (id: string | null) => {
-    console.log(id)
     if (id === null) {
-      console.log("delete")
       searchParams.delete('cardId');
     } else {
-      console.log("set")
       searchParams.set('cardId', id);
     }
     setSearchParams(searchParams)

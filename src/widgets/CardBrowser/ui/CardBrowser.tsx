@@ -1,35 +1,18 @@
-import { ComponentProps, useEffect, useState } from 'react';
+import { ComponentProps, useContext } from 'react';
 import { Paginator } from '../../../features/Paginator';
 import { Card } from '../../../shared/Card';
-import { CardData, PokemonAPI, SearchResponse } from '../../../shared/model';
 import styles from './CardBrowser.module.scss';
-import { useQuery } from '../../../shared/model/hooks';
 import { CardDetailed } from '../../../shared/Card/ui/Card.Detailed';
+import { SearchContext } from '../../../shared/сontext';
 
 export type CardBrowserProps = ComponentProps<'div'>;
 
 export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
-  const { searchQuery } = useQuery();
-  const [results, setResults] = useState<SearchResponse<CardData> | null>(null);
+  const { response } = useContext(SearchContext);
 
-  useEffect(() => {
-    const loadData = async () => {
-      const response = await PokemonAPI.getCardsByQuery({
-        q: `name:${searchQuery.str ?? ''}*`,
-        page: searchQuery.page,
-        pageSize: 20,
-      });
+  if (!response) return 'Loading...';
+  if (response.totalCount === 0) return 'No results (°◠°)';
 
-      setResults(response);
-    };
-
-    loadData();
-  }, [searchQuery]);
-
-  if (!results) return 'Loading...';
-  if (results.totalCount === 0) return 'No results (°◠°)';
-
-  const { data, totalCount, page, pageSize } = results;
   return (
     <div
       className={`${styles.card_browser} ${className ?? ''}`}
@@ -37,11 +20,11 @@ export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
     >
       <div className={`${styles.card_browser__paginator}`}>
         <div className={styles.card_browser__list}>
-          {data.map((card) => (
+          {response.data.map((card) => (
             <Card key={card.id} {...card} />
           ))}
         </div>
-        <Paginator {...{ totalCount, page, pageSize }} />
+        <Paginator />
       </div>
       <CardDetailed />
     </div>
