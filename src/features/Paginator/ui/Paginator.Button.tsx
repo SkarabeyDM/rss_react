@@ -8,7 +8,7 @@ export type PaginatorButtonProps = ComponentProps<'button'> & {
   currentPage: number;
 };
 
-export default function PaginatorButton({
+export function PaginatorButton({
   variant,
   nextPage,
   threshold,

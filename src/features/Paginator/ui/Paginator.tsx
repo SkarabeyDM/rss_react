@@ -1,6 +1,6 @@
 import React, { ComponentProps } from 'react';
 import { CardData, SearchResponse } from '../../../shared/model';
-import PaginatorButton from './Paginator.Button';
+import { PaginatorButton } from './Paginator.Button';
 import { useSearchParams } from 'react-router-dom';
 import styles from './Paginator.module.scss';
 
