@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { useQuery } from '../model/hooks';
 import { SearchResponse, CardData, PokemonAPI } from '../model';
