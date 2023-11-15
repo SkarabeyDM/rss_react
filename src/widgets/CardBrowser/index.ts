@@ -1,1 +1,1 @@
-export * from "./ui/CardBrowser"
+export * from './ui/CardBrowser';

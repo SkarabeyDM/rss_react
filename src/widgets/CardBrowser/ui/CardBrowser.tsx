@@ -4,14 +4,25 @@ import { Card } from '../../../shared/Card';
 import styles from './CardBrowser.module.scss';
 import { CardDetailed } from '../../../shared/Card/ui/Card.Detailed';
 import { SearchContext } from '../../../shared/сontext';
+import { useSearchParams } from 'react-router-dom';
 
 export type CardBrowserProps = ComponentProps<'div'>;
 
 export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
   const { response } = useContext(SearchContext);
+  const [, setSearchParams] = useSearchParams();
+
+  const setPage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setSearchParams((searchParams) => {
+      searchParams.set('page', event.currentTarget.value);
+      return searchParams;
+    });
+  };
 
   if (!response) return 'Loading...';
   if (response.totalCount === 0) return 'No results (°◠°)';
+
+  const { data, totalCount, page, pageSize } = response;
 
   return (
     <div
@@ -20,11 +31,18 @@ export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
     >
       <div className={`${styles.card_browser__paginator}`}>
         <div className={styles.card_browser__list}>
-          {response.data.map((card) => (
-            <Card key={card.id} {...card} />
+          {data.map((card) => (
+            <Card data-testid={"card"} key={card.id} cardData={card} />
           ))}
         </div>
-        <Paginator />
+        <Paginator
+          {...{
+            totalCount,
+            page,
+            pageSize,
+            onSubmitPage: setPage,
+          }}
+        />
       </div>
       <CardDetailed />
     </div>
