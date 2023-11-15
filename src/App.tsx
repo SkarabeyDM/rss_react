@@ -1,14 +1,15 @@
 import { StrictMode } from 'react';
 import './App.scss';
 import { AppRoutes } from './app/api/Routes';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import packageJson from '../package.json';
 
 export function App() {
   return (
     <StrictMode>
-      <HashRouter>
+      <BrowserRouter basename={packageJson.homepage}>
         <AppRoutes />
-      </HashRouter>
+      </BrowserRouter>
     </StrictMode>
   );
 }

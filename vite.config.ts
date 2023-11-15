@@ -32,14 +32,14 @@ export default ({ mode }) => {
 
   return defineConfig({
     plugins: [react(), excludeMsw()],
-    base: '/rss_react/',
+    base: '/rss_react',
     test: {
       globals: true,
       environment: 'jsdom',
       setupFiles: ['./src/setupTests.ts'],
       include: ['**/*.{test,spec}.ts?(x)'],
       exclude: [...configDefaults.exclude, '*.js'],
-      coverage: { include: ['src/**/*'], exclude: ['*/index.ts'] },
+      coverage: { include: ['src/**/*'] },
     },
     define: {
       'process.env': process.env,
