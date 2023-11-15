@@ -17,7 +17,6 @@
     border-radius: 0.25rem;
     height: 3rem;
     overflow: hidden;
-    cursor: pointer;
     &::before,
     &::after {
       padding: 0.5rem;
@@ -30,6 +29,9 @@
     }
     &::after {
       top: 100%;
+    }
+    &:not(:disabled) {
+      cursor: pointer;
     }
   }
 }
