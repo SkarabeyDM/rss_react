@@ -5,7 +5,7 @@ import { SearchContextProvider } from '../../../shared/сontext';
 
 export function Catalog() {
   return (
-    <>
+    <div data-testid={'Catalog'}>
       <section>
         <SearchForm />
       </section>
@@ -14,6 +14,6 @@ export function Catalog() {
           <CardBrowser />
         </SearchContextProvider>
       </section>
-    </>
+    </div>
   );
 }
