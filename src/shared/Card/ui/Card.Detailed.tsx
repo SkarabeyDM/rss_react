@@ -7,7 +7,7 @@ import { SUPERTYPES } from './Card';
 
 export function CardDetailed() {
   const [isActive, setIsActive] = useState(false);
-  const [data, setData] = useState<CardData | null>(null);
+  const [data, setData] = useState<CardData>(null!);
 
   const { cardId, setCardId } = useCardId();
 
@@ -27,6 +27,10 @@ export function CardDetailed() {
     loadData();
   }, [cardId]);
 
+  const closeButtonClick = () => {
+    setCardId(null);
+  };
+
   if (!isActive) return null;
   if (data === null) return null;
   const {
@@ -45,16 +49,10 @@ export function CardDetailed() {
 
   return (
     <div className={styles.card_detailed__wrapper}>
-      <div
-        className={`${styles.card_detailed} ${SUPERTYPES[supertype]} ${
-          isActive ? styles.active : ''
-        } `}
-      >
+      <div className={`${styles.card_detailed} ${SUPERTYPES[supertype]}`}>
         <button
           className={styles.card_detailed__close_button}
-          onClick={() => {
-            setCardId(null);
-          }}
+          onClick={closeButtonClick}
         />
         <img
           className={styles.card_detailed__image}
