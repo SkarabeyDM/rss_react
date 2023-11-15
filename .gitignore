@@ -13,7 +13,6 @@ dist-ssr
 mockServiceWorker.js
 coverage
 *.local
-*.husky
 *.env
 
 # Editor directories and files
