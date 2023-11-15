@@ -2,6 +2,8 @@ import { PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { useQuery } from '../model/hooks';
 import { SearchResponse, CardData, PokemonAPI } from '../model';
 
+export type SearchContextProps = PropsWithChildren;
+
 export type SearchContextType = {
   query: {
     search: string | null;
@@ -12,7 +14,7 @@ export type SearchContextType = {
 
 export const SearchContext = createContext<SearchContextType>(null!);
 
-export function SearchContextProvider({ children }: PropsWithChildren) {
+export function SearchContextProvider({ children }: SearchContextProps) {
   const { searchQuery } = useQuery();
   const [results, setResults] = useState<SearchResponse<CardData> | null>(null);
 
