@@ -5,6 +5,7 @@ import { PluginOption, defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import fs from 'fs';
+import { configDefaults } from 'vitest/dist/config';
 
 // https://vitejs.dev/config/
 
@@ -36,7 +37,9 @@ export default ({ mode }) => {
       globals: true,
       environment: 'jsdom',
       setupFiles: ['./src/setupTests.ts'],
-      coverage: { all: true },
+      include: ['**/*.{test,spec}.ts?(x)'],
+      exclude: [...configDefaults.exclude, '*.js'],
+      coverage: { include: ['src/**/*'], exclude: ['*/index.ts'] },
     },
     define: {
       'process.env': process.env,

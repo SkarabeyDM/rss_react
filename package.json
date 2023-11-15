@@ -16,7 +16,8 @@
     "preview": "vite preview",
     "prepare": "husky install && npx msw init ./public",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "coverage:all": "vitest run --coverage.enabled --coverage.all"
   },
   "lint-staged": {
     "*.{ts,tsx}": "eslint --fix"
@@ -25,6 +26,7 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.18.0",
     "vite": "^4.4.5"
   },
