@@ -16,7 +16,7 @@ export const getCardsByQuery = async (params: PokemonTCG.Parameter) => {
     const data = (await response.json()) as SearchResponse<CardData>;
     return data;
   } catch (error) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch page');
   }
 };
 
@@ -32,7 +32,7 @@ export const getCardById = async (cardId: string) => {
     const data = (await response.json()) as CardIdResponse;
     return data;
   } catch (error) {
-    throw new Error('Failed to fetch data');
+    throw new Error('Failed to fetch card');
   }
 };
 
