@@ -18,8 +18,13 @@ export function SearchForm() {
   };
 
   return (
-    <form className={styles.search_form} onSubmit={handleSubmit}>
+    <form
+      data-testid={'SearchForm'}
+      className={styles.search_form}
+      onSubmit={handleSubmit}
+    >
       <input
+        data-testid={'SearchForm__text-input'}
         className={styles.search_form__input_text}
         type="text"
         onChange={handleChange}
@@ -27,6 +32,7 @@ export function SearchForm() {
         value={search}
       />
       <input
+        data-testid={'SearchForm__button'}
         className={styles.search_form__input_button}
         type="submit"
         value={'Search'}
