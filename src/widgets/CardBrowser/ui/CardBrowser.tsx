@@ -27,12 +27,13 @@ export function CardBrowser({ className, ...otherProps }: CardBrowserProps) {
   return (
     <div
       className={`${styles.card_browser} ${className ?? ''}`}
+      data-testid={'CardBrowser'}
       {...otherProps}
     >
       <div className={`${styles.card_browser__paginator}`}>
         <div className={styles.card_browser__list}>
           {data.map((card) => (
-            <Card data-testid={"card"} key={card.id} cardData={card} />
+            <Card data-testid={'card'} key={card.id} cardData={card} />
           ))}
         </div>
         <Paginator

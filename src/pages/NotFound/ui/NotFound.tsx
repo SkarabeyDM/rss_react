@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export function NotFound() {
-  return (
-    <div>NotFound</div>
-  )
+  return <div data-testid={'NotFound'}>NotFound</div>;
 }
