@@ -1,10 +1,12 @@
 import styles from './Card.module.scss';
 import { CardData, Supertype } from '../../model';
 import { PropertyLine } from '../../PropertyLine';
-import { useEffect, useState } from 'react';
+import { ComponentProps, useEffect, useState } from 'react';
 import { useCardId } from '../../model/hooks';
 
-export type CardProps = CardData;
+export type CardProps = ComponentProps<'button'> & {
+  cardData: CardData;
+};
 
 export const SUPERTYPES = {
   [Supertype.Energy]: styles.supertype__energy,
@@ -12,8 +14,8 @@ export const SUPERTYPES = {
   [Supertype.Pokemon]: styles.supertype__pokemon,
 };
 
-export function Card(props: CardProps) {
-  const { images, name, supertype, types, hp, artist, level, id } = props;
+export function Card({ cardData, ...buttonProps }: CardProps) {
+  const { images, name, supertype, types, hp, artist, level, id } = cardData;
   const [isActive, setIsActive] = useState(false);
 
   const { cardId, setCardId } = useCardId();
@@ -33,6 +35,7 @@ export function Card(props: CardProps) {
       } `}
       id={id}
       onClick={handleClick}
+      {...buttonProps}
     >
       <img
         className={styles.card__image}
