@@ -1,57 +1,58 @@
-import React, { ComponentProps, useContext } from 'react';
+import React, { ComponentProps } from 'react';
 import { PaginatorButton } from './Paginator.Button';
-import { useSearchParams } from 'react-router-dom';
 import styles from './Paginator.module.scss';
-import { SearchContext } from '../../../shared/сontext';
+import { CardData, SearchResponse } from '../../../shared/model';
 
-export type PaginatorProps = ComponentProps<'div'>;
-export function Paginator({ className, ...otherProps }: PaginatorProps) {
-  const { response } = useContext(SearchContext);
-  const [, setSearchParams] = useSearchParams();
-
-  if (response === null) return null;
-  const { totalCount, page, pageSize } = response;
+export type PaginatorProps = ComponentProps<'div'> &
+  Pick<SearchResponse<CardData>, 'totalCount' | 'page' | 'pageSize'> & {
+    onSubmitPage?(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+  };
+export function Paginator({
+  onSubmitPage,
+  totalCount,
+  page,
+  pageSize,
+  className,
+  ...otherProps
+}: PaginatorProps) {
   const totalPages = Math.ceil(totalCount / pageSize);
   if (totalPages === 1) return null;
-
-  const handleClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    setSearchParams((searchParams) => {
-      searchParams.set('page', event.currentTarget.value);
-      return searchParams;
-    });
-  };
 
   return (
     <div className={`${styles.paginator} ${className ?? ''}`} {...otherProps}>
       <PaginatorButton
+        data-testid={'button-first'}
         currentPage={page}
         nextPage={1}
         threshold={1}
-        onClick={handleClick}
+        onClick={onSubmitPage}
         variant={'first'}
       />
       <PaginatorButton
+        data-testid={'button-prev'}
         currentPage={page}
         nextPage={page - 1}
         threshold={1}
-        onClick={handleClick}
+        onClick={onSubmitPage}
         variant={'prev'}
       />
-      <div className={styles.paginator__icon}>{page}</div>
+      <div className={styles.paginator__icon} data-testid={'pageNumber'}>
+        {page}
+      </div>
       <PaginatorButton
+        data-testid={'button-next'}
         currentPage={page}
         nextPage={page + 1}
         threshold={totalPages}
-        onClick={handleClick}
+        onClick={onSubmitPage}
         variant={'next'}
       />
       <PaginatorButton
+        data-testid={'button-last'}
         currentPage={page}
         nextPage={totalPages}
         threshold={totalPages}
-        onClick={handleClick}
+        onClick={onSubmitPage}
         variant={'last'}
       />
     </div>
