@@ -1,12 +1,14 @@
 import '@testing-library/jest-dom';
-import { expect, afterEach } from 'vitest';
-import { cleanup } from '@testing-library/react';
+import { expect, beforeAll, afterAll, afterEach } from 'vitest';
 import * as matchers from '@testing-library/jest-dom/matchers';
-
+import { cleanup } from '@testing-library/react';
+import { server } from './mocks/node';
 // extends Vitest's expect method with methods from react-testing-library
 expect.extend(matchers);
 
-// runs a cleanup after each test case (e.g. clearing jsdom)
+beforeAll(() => server.listen());
 afterEach(() => {
   cleanup();
+  server.resetHandlers();
 });
+afterAll(() => server.close());
