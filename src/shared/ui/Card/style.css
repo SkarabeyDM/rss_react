@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #1c1c1c;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.card_line {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
