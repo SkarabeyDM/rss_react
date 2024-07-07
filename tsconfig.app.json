@@ -9,14 +9,14 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
-      "src/*": ["./*"],
       "app/*": ["./app/*"],
       "processes/*": ["./processes/*"],
       "pages/*": ["./pages/*"],
       "widgets/*": ["./widgets/*"],
       "features/*": ["./features/*"],
       "entities/*": ["./entities/*"],
-      "shared/*": ["./shared/*"]
+      "shared/*": ["./shared/*"],
+      "src/*": ["./*"]
     },
 
     /* Bundler mode */
