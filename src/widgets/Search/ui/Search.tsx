@@ -71,6 +71,12 @@ export class Search extends Component<object, SearchState> {
             );
           }) ?? "No results"}
         </section>
+        <button
+          className="error_button"
+          onClick={() => this.setState({ error: "Button Error" })}
+        >
+          ! Throw Error !
+        </button>
       </div>
     );
   }
