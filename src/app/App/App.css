@@ -4,3 +4,9 @@
   padding: 2rem;
   text-align: center;
 }
+
+.error_button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
