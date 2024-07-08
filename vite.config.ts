@@ -12,6 +12,7 @@ export default ({ mode }) => {
 
   return defineConfig({
     plugins: [react()],
+    base: "/rss_react/",
     resolve: {
       alias: {
         src: "/src",
