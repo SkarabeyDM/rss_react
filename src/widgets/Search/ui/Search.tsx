@@ -25,7 +25,6 @@ export class Search extends Component<object, SearchState> {
         `https://swapi.dev/api/people/?search=${searchTerm}`
       );
       const data: { results: swapiPeople[] } = await response.json();
-      console.log(data);
       this.setState({ results: data.results, error: null });
     } catch (error) {
       this.setState({ error: "Failed to fetch results" });
