@@ -3,6 +3,7 @@ import "./App.css";
 import { SearchInput } from "@features/SearchInput";
 import { swapiPeople } from "@shared/types/api";
 import { Card } from "@shared/ui/Card";
+import { SEARCH_TERM_KEY } from "@shared/const";
 
 export type AppState = {
   results?: swapiPeople[];
@@ -32,6 +33,10 @@ class App extends React.Component<object, AppState> {
       console.error("Fetch error:", error);
     }
   };
+
+  componentDidMount(): void {
+    this.fetchResults(localStorage.getItem(SEARCH_TERM_KEY) ?? "");
+  }
 
   render(): React.ReactNode {
     return (
