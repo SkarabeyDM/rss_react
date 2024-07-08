@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { SEARCH_TERM_KEY } from "shared/const";
+import { SEARCH_TERM_KEY } from "@shared/const";
 
 export type SearchInputState = {
   searchTerm: string;

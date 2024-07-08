@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import { SearchInput } from "features/SearchInput";
-import { swapiPeople } from "shared/types/api";
-import { Card } from "shared/ui/Card";
+import { SearchInput } from "@features/SearchInput";
+import { swapiPeople } from "@shared/types/api";
+import { Card } from "@shared/ui/Card";
 
 export type AppState = {
   results?: swapiPeople[];

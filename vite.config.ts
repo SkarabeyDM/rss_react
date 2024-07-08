@@ -1,32 +1,27 @@
 /// <reference types="vite/client" />
 
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { resolve } from "path";
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
-  process.env = {
-    POKEMONTCG_API_KEY: process.env.VITE_API_KEY,
-    ...loadEnv(mode, process.cwd()),
-  };
-
-  return defineConfig({
+export default defineConfig(() => {
+  return {
     plugins: [react()],
     base: "/rss_react/",
     resolve: {
-      alias: {
-        src: "/src",
-        app: "/src/app",
-        processes: "/src/processes",
-        pages: "/src/pages",
-        widgets: "/src/widgets",
-        features: "/src/features",
-        entities: "/src/entities",
-        shared: "/src/shared",
-      },
+      alias: [
+        { find: "@src", replacement: resolve(__dirname, "./src") },
+        { find: "@shared", replacement: resolve(__dirname, "./src/shared") },
+        { find: "@app", replacement: resolve(__dirname, "./src/app") },
+        { find: "@widgets", replacement: resolve(__dirname, "./src/widgets") },
+        { find: "@pages", replacement: resolve(__dirname, "./src/pages") },
+        { find: "@features", replacement: resolve(__dirname, "./src/features") },
+        { find: "@entities", replacement: resolve(__dirname, "./src/entities") },
+      ],
     },
     define: {
-      "process.env": process.env
-    }
-  });
-};
+      "process.env": process.env,
+    },
+  };
+});

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
-import { swapiPeople } from "shared/types/api";
+import { swapiPeople } from "@shared/types/api";
 
 export type CardProps = Partial<swapiPeople>;
 
