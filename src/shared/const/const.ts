@@ -19,3 +19,4 @@ export enum Supertype {
   Pokemon = "Pok\u00E9mon",
   Trainer = "Trainer",
 }
+export const SEARCH_TERM_KEY = "searchTermKey";
