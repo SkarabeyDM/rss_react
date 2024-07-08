@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
+import { swapiPeople } from "shared/types/api";
 
-export type CardProps = { name: string; description: string };
+export type CardProps = Partial<swapiPeople>;
 
 export class Card extends Component<CardProps> {
   constructor(props: CardProps) {
@@ -11,12 +12,11 @@ export class Card extends Component<CardProps> {
   render() {
     return (
       <div className="card">
-        <div className="card_line">
-          Name: <span>{this.props.name}</span>
-        </div>
-        <div className="card_line">
-          Description: <span>{this.props.description}</span>
-        </div>
+        {Object.entries(this.props).map(([key, value]) => {
+          return (
+            <div className="card_line" key={key}>{`${key}: ${value}`}</div>
+          );
+        })}
       </div>
     );
   }
