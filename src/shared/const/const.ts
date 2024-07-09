@@ -1,1 +1,1 @@
-export const SEARCH_TERM_KEY = "searchTermKey";
+export const SEARCH_TERM_KEY = 'searchTermKey';

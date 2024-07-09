@@ -1,9 +1,9 @@
-import React from "react";
-import "./App.css";
-import { Search } from "@widgets/Search";
-import { ErrorBoundary } from "@shared/ui/ErrorBoundary";
+import React from 'react';
+import './App.css';
+import { Search } from '@widgets/Search';
+import { ErrorBoundary } from '@shared/ui/ErrorBoundary';
 
-class App extends React.Component {
+export class App extends React.Component {
   render(): React.ReactNode {
     return (
       <main>
@@ -14,5 +14,3 @@ class App extends React.Component {
     );
   }
 }
-
-export { App };

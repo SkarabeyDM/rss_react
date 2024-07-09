@@ -1,14 +1,10 @@
-import React, { Component } from "react";
-import "./style.css";
-import { swapiPeople } from "@shared/types/api";
+import { Component } from 'react';
+import './style.css';
+import { SwapiPeople } from '@shared/types/api';
 
-export type CardProps = Partial<swapiPeople>;
+export type CardProps = Partial<SwapiPeople>;
 
 export class Card extends Component<CardProps> {
-  constructor(props: CardProps) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="card">

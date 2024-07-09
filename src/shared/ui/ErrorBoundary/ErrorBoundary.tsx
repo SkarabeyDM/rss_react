@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, PropsWithChildren, ReactNode } from "react";
+import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
 
 export type ErrorBoundaryState = {
   hasError: boolean;
@@ -18,15 +18,17 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.log(error, errorInfo);
+    console.error(error, errorInfo);
     this.setState({ hasError: true });
   }
 
   render(): ReactNode {
-    if (this.state.hasError) {
-      return this.props.fallback;
+    const { hasError } = this.state;
+    const { fallback, children } = this.props;
+    if (hasError) {
+      return fallback;
     }
 
-    return this.props.children;
+    return children;
   }
 }

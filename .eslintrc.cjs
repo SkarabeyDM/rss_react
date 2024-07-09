@@ -32,7 +32,8 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'prettier/prettier': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
-    'react/prefer-stateless-function': 0,
-    'import/prefer-default-export': "off",
+    'react/prefer-stateless-function': 'off',
+    'import/prefer-default-export': 'off',
+    'no-console': 'off',
   },
 };

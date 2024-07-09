@@ -1,4 +1,4 @@
-export type swapiPeople = {
+export type SwapiPeople = {
   name: string;
   birth_year: string;
   gender: string;

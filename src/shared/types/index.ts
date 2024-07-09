@@ -1,1 +1,1 @@
-export * as PokemonTCGTypes from "./api";
+export * from './api';
