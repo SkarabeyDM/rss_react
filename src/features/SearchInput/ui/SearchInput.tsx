@@ -1,5 +1,4 @@
-import type React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { SEARCH_TERM_KEY } from '@shared/const';
 
 export type SearchInputState = {

@@ -1,4 +1,5 @@
-import { Component, ErrorInfo, PropsWithChildren, ReactNode } from 'react';
+import type { ErrorInfo, PropsWithChildren, ReactNode } from 'react';
+import { Component } from 'react';
 
 export type ErrorBoundaryState = {
   hasError: boolean;

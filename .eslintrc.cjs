@@ -35,5 +35,8 @@ module.exports = {
     'react/prefer-stateless-function': 'off',
     'import/prefer-default-export': 'off',
     'no-console': 'off',
+    '@typescript-eslint/consistent-type-exports': 'error',
+    '@typescript-eslint/consistent-type-imports': 'error',
+    '@typescript-eslint/no-import-type-side-effects': 'error',
   },
 };
