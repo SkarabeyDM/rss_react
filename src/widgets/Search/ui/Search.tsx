@@ -1,8 +1,8 @@
 import { SearchInput } from '@features/SearchInput';
 import { SEARCH_TERM_KEY } from '@shared/const';
-import { SwapiPeople } from '@shared/types/api';
+import type { SwapiPeople } from '@shared/types/api';
 import { Card } from '@shared/ui/Card';
-import React, { Component } from 'react';
+import { useEffect, useState } from 'react';
 
 export type SearchState = {
   results?: SwapiPeople[];
@@ -10,38 +10,33 @@ export type SearchState = {
   isLoading: boolean;
 };
 
-export class Search extends Component<object, SearchState> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      results: undefined,
-      error: null,
-      isLoading: false,
-    };
-  }
+export function Search() {
+  const [results, setResults] = useState<SwapiPeople[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  componentDidMount(): void {
-    this.fetchResults(localStorage.getItem(SEARCH_TERM_KEY) ?? '');
-  }
-
-  fetchResults = async (searchTerm: string) => {
+  const fetchResults = async (searchTerm: string) => {
     try {
-      this.setState({ isLoading: true });
+      setIsLoading(true);
       const trimmedSearchTerm = searchTerm.trim();
       const response = await fetch(
         `https://swapi.dev/api/people/?search=${trimmedSearchTerm}`
       );
       const data: { results: SwapiPeople[] } = await response.json();
-      this.setState({ results: data.results, error: null, isLoading: false });
-    } catch (error) {
-      this.setState({ error: 'Failed to fetch results' });
+      setIsLoading(false);
+      setError(null);
+      setResults(data.results);
+    } catch (err) {
+      setError('Failed to fetch results');
       console.error('Fetch error:', error);
     }
   };
 
-  renderList = () => {
-    const { results, isLoading } = this.state;
+  useEffect(() => {
+    fetchResults(localStorage.getItem(SEARCH_TERM_KEY) ?? '');
+  }, []);
 
+  const renderList = () => {
     if (isLoading) return 'Loading...';
     if (!results || !results.length) return 'No results :(';
 
@@ -62,21 +57,19 @@ export class Search extends Component<object, SearchState> {
     });
   };
 
-  render(): React.ReactNode {
-    const { error } = this.state;
-    if (error) throw new Error();
-    return (
-      <div>
-        <SearchInput onSubmit={this.fetchResults} />
-        <section className="card_list">{this.renderList()}</section>
-        <button
-          type="button"
-          className="error_button"
-          onClick={() => this.setState({ error: 'Button Error' })}
-        >
-          ! Throw Error !
-        </button>
-      </div>
-    );
-  }
+  if (error) throw new Error();
+
+  return (
+    <div>
+      <SearchInput onSubmit={fetchResults} />
+      <section className="card_list">{renderList()}</section>
+      <button
+        type="button"
+        className="error_button"
+        onClick={() => setError('Button Error')}
+      >
+        ! Throw Error !
+      </button>
+    </div>
+  );
 }
