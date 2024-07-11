@@ -39,5 +39,18 @@ module.exports = {
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/no-import-type-side-effects': 'error',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          'test.{ts,tsx}', // repos with a single test file
+          'test-*.{ts,tsx}', // repos with multiple top-level test files
+          '**/*{.,_}{test,spec}.{ts,tsx}', // tests where the extension or filename suffix denotes that it is a test
+          '**/vitest.config.js', // vitest config
+          '**/vitest-setup.ts', // vitest setup
+        ],
+        optionalDependencies: false,
+      },
+    ],
   },
 };
