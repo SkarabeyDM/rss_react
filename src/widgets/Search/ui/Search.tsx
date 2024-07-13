@@ -1,17 +1,18 @@
 import { SearchInput } from '@features/SearchInput';
 import { SEARCH_TERM_KEY } from '@shared/const';
-import type { SwapiPeople } from '@shared/types/api';
 import { Card } from '@shared/ui/Card';
 import { useEffect, useState } from 'react';
+import type { IPeople } from 'swapi-ts';
+import { People } from 'swapi-ts';
 
 export type SearchState = {
-  results?: SwapiPeople[];
+  results?: IPeople[];
   error: string | null;
   isLoading: boolean;
 };
 
 export function Search() {
-  const [results, setResults] = useState<SwapiPeople[] | null>(null);
+  const [results, setResults] = useState<IPeople[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -19,13 +20,11 @@ export function Search() {
     try {
       setIsLoading(true);
       const trimmedSearchTerm = searchTerm.trim();
-      const response = await fetch(
-        `https://swapi.dev/api/people/?search=${trimmedSearchTerm}`
-      );
-      const data: { results: SwapiPeople[] } = await response.json();
+      const data = await People.findBySearch([trimmedSearchTerm]);
       setIsLoading(false);
       setError(null);
-      setResults(data.results);
+      console.log(data);
+      setResults(data.resources.map((res) => res.value));
     } catch (err) {
       setError('Failed to fetch results');
       console.error('Fetch error:', error);
@@ -41,19 +40,7 @@ export function Search() {
     if (!results || !results.length) return 'No results :(';
 
     return results.map((data) => {
-      return (
-        <Card
-          name={data.name}
-          birth_year={data.birth_year}
-          gender={data.gender}
-          height={data.height}
-          mass={data.mass}
-          hair_color={data.hair_color}
-          eye_color={data.eye_color}
-          skin_color={data.skin_color}
-          key={data.name}
-        />
-      );
+      return <Card data={data} key={data.name} />;
     });
   };
 
