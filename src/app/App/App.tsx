@@ -1,5 +1,5 @@
 import './App.css';
-import { Search } from '@widgets/Search';
+import { Search } from '@src/views/Search';
 import { ErrorBoundary } from '@shared/ui/ErrorBoundary';
 
 export function App() {
