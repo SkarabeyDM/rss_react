@@ -39,6 +39,8 @@ module.exports = {
     '@typescript-eslint/consistent-type-exports': 'error',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/no-import-type-side-effects': 'error',
+    'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       {
