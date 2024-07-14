@@ -18,10 +18,11 @@ export type SearchState = {
 };
 
 export function Search() {
-  const [searchTerm, setSearchTerm] = useState(
-    localStorage.getItem(SEARCH_TERM_KEY) ?? ''
-  );
-  const [page, setPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState({
+    term: localStorage.getItem(SEARCH_TERM_KEY) ?? '',
+    page: 1,
+  });
+
   const [response, setResponse] = useState<SwapiResponse>({
     count: 0,
     results: [],
@@ -32,8 +33,8 @@ export function Search() {
   const fetchResults = async () => {
     try {
       setIsLoading(true);
-      const trimmedSearchTerm = searchTerm.trim();
-      const data = await People.getPage(page, trimmedSearchTerm);
+      const trimmedSearchTerm = searchQuery.term.trim();
+      const data = await People.getPage(searchQuery.page, trimmedSearchTerm);
       setIsLoading(false);
       setError(null);
       setResponse(data);
@@ -45,7 +46,7 @@ export function Search() {
 
   useEffect(() => {
     fetchResults();
-  }, [searchTerm, page]);
+  }, [searchQuery]);
 
   const renderList = () => {
     if (isLoading) return 'Loading...';
@@ -59,16 +60,21 @@ export function Search() {
 
   if (error) throw new Error();
   const { count } = response;
+  const { page } = searchQuery;
 
   return (
     <div>
-      <SearchInput onSubmit={setSearchTerm} />
+      <SearchInput
+        onSubmit={(term) => setSearchQuery(() => ({ page: 1, term }))}
+      />
       <section className="card_list">
         <Paginator
           pageCount={Math.ceil(count / 10)}
           currentPage={page}
           siblingCount={1}
-          onChangePage={setPage}
+          onChangePage={(nextPage) =>
+            setSearchQuery((prevSearch) => ({ ...prevSearch, page: nextPage }))
+          }
         />
         {renderList()}
       </section>
