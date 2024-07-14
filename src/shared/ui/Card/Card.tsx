@@ -1,16 +1,20 @@
-import type { SwapiPeople } from '@shared/types/api';
+import type { IPeople } from 'swapi-ts';
+import { getImageByUrl } from '@shared/utils/utils';
 import style from './Card.module.scss';
 
-export type CardProps = Partial<SwapiPeople>;
+export type CardProps = {
+  data: IPeople;
+};
 
 export function Card(props: CardProps) {
+  const { data } = props;
+  const imageUrl = getImageByUrl(data.url) ?? '';
   return (
-    <div className={style.card}>
-      {Object.entries(props).map(([key, value]) => {
-        return (
-          <div className={style.card_line} key={key}>{`${key}: ${value}`}</div>
-        );
-      })}
-    </div>
+    <article className={style.card}>
+      <div className={style.card_wrapper}>
+        <img className={style.card_image} src={imageUrl} alt={data.name} />
+        <h2>{data.name}</h2>
+      </div>
+    </article>
   );
 }
