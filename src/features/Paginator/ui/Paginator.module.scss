@@ -1,0 +1,17 @@
+.paginator {
+  display: flex;
+  font: 1.2rem monospace;
+  gap: 0.5em;
+
+  &_button {
+    $button: &;
+    padding: 0.4em;
+
+    &_current {
+      @extend #{$button};
+      background-color: dodgerblue;
+      color: black;
+      cursor: default;
+    }
+  }
+}
