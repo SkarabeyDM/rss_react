@@ -1,8 +1,8 @@
 import { Paginator } from '@features/Paginator';
 import { SearchInput } from '@features/SearchInput';
-import { SEARCH_TERM_KEY } from '@shared/const';
 import { Card } from '@shared/ui/Card';
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import type { IPeople } from 'swapi-ts';
 import { People } from 'swapi-ts';
 
@@ -18,10 +18,9 @@ export type SearchState = {
 };
 
 export function Search() {
-  const [searchQuery, setSearchQuery] = useState({
-    term: localStorage.getItem(SEARCH_TERM_KEY) ?? '',
-    page: 1,
-  });
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = +(searchParams.get('page') ?? 1);
+  const q = searchParams.get('q') ?? '';
 
   const [response, setResponse] = useState<SwapiResponse>({
     count: 0,
@@ -33,8 +32,7 @@ export function Search() {
   const fetchResults = async () => {
     try {
       setIsLoading(true);
-      const trimmedSearchTerm = searchQuery.term.trim();
-      const data = await People.getPage(searchQuery.page, trimmedSearchTerm);
+      const data = await People.getPage(page, q);
       setIsLoading(false);
       setError(null);
       setResponse(data);
@@ -46,7 +44,7 @@ export function Search() {
 
   useEffect(() => {
     fetchResults();
-  }, [searchQuery]);
+  }, [searchParams]);
 
   const renderList = () => {
     if (isLoading) return 'Loading...';
@@ -60,20 +58,20 @@ export function Search() {
 
   if (error) throw new Error();
   const { count } = response;
-  const { page } = searchQuery;
 
   return (
     <div>
-      <SearchInput
-        onSubmit={(term) => setSearchQuery(() => ({ page: 1, term }))}
-      />
+      <SearchInput />
       <section className="card_list">
         <Paginator
           pageCount={Math.ceil(count / 10)}
           currentPage={page}
           siblingCount={1}
           onChangePage={(nextPage) =>
-            setSearchQuery((prevSearch) => ({ ...prevSearch, page: nextPage }))
+            setSearchParams((params) => {
+              params.set('page', nextPage.toString());
+              return params;
+            })
           }
         />
         {renderList()}
