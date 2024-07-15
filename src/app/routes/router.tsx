@@ -8,9 +8,12 @@ export const router = createBrowserRouter(
     {
       path: Paths.Main,
       element: <Layout />,
-      children: [{ path: `/:q?`, element: <Search /> }],
+      children: [
+        { path: Paths.Main, element: 'Main Page' },
+        { path: Paths.NotFound, element: 404 },
+        { path: `${Paths.Search}/:q?`, element: <Search /> },
+      ],
     },
-    { path: '/*', element: 404 },
   ],
   { basename: import.meta.env.BASE_URL }
 );

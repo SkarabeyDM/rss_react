@@ -1,12 +1,18 @@
+import { Paths } from '@shared/const';
 import { ErrorBoundary } from '@shared/ui/ErrorBoundary';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export function Layout() {
   return (
-    <ErrorBoundary fallback={<div>OOPS!</div>}>
-      <main>
-        <Outlet />
-      </main>
-    </ErrorBoundary>
+    <>
+      <header>
+        <NavLink to={Paths.Search}>Search</NavLink>
+      </header>
+      <ErrorBoundary fallback={<div>OOPS!</div>}>
+        <main>
+          <Outlet />
+        </main>
+      </ErrorBoundary>
+    </>
   );
 }
