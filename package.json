@@ -1,5 +1,6 @@
 {
   "name": "rss_react",
+  "homepage": "https://skarabeydm.github.io/rss_react/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -30,8 +31,10 @@
     "@vitejs/plugin-react": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
     "swapi-ts": "^1.0.1",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vite-plugin-gh-pages": "^0.4.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
