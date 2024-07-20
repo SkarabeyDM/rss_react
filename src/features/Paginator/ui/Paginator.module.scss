@@ -1,16 +1,20 @@
+@import '../../../shared/ui/style/variables.scss';
+
 .paginator {
+  --scale: min(3.9vmin, 1rem);
   display: flex;
-  font: 1.2rem monospace;
-  gap: 0.5em;
+  font: /* calc(1.2 * var(--scale))  */monospace;
+  gap: min(0.5em, 1vw);
+  max-width: 100%;
 
   &_button {
     $button: &;
-    padding: 0.4em;
+    padding: min(0.4em, 10vw);
 
     &_current {
       @extend #{$button};
       background-color: dodgerblue;
-      color: black;
+      color: $bg-color-dark;
       cursor: default;
     }
   }

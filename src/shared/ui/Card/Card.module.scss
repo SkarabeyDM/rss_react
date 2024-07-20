@@ -1,11 +1,15 @@
 .card {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   background: #1c1c1c;
   border-radius: 2rem;
   padding: 1rem;
-  width: fit-content;
-  cursor: pointer;
+  max-width: fit-content;
+  width: 100%;
+
+  transition-duration: 0.1s;
+  -webkit-tap-highlight-color: transparent;
 
   &_line {
     display: flex;
@@ -21,5 +25,9 @@
   &_wrapper {
     overflow: hidden;
     border-radius: 1rem;
+  }
+
+  &:active{
+    transform: scale(0.95);
   }
 }

@@ -74,7 +74,7 @@ export function Search() {
   const { count } = response;
 
   return (
-    <div>
+    <>
       <SearchInput />
       <div className={style.paginatorWrapper}>
         <Paginator
@@ -100,6 +100,6 @@ export function Search() {
       >
         ! Throw Error !
       </button>
-    </div>
+    </>
   );
 }
