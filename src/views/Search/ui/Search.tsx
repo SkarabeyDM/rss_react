@@ -1,10 +1,12 @@
 import { Paginator } from '@features/Paginator';
 import { SearchInput } from '@features/SearchInput';
 import { Card } from '@shared/ui/Card';
+import { getIdByUrl } from '@shared/utils/utils';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
 import type { IPeople } from 'swapi-ts';
-import { People } from 'swapi-ts';
+import { People } from '@shared/api/swapi';
+import style from './Search.module.scss';
 
 type SwapiResponse = {
   count: number;
@@ -21,6 +23,7 @@ export function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = +(searchParams.get('page') ?? 1);
   const q = searchParams.get('q') ?? '';
+  const cardId = searchParams.get('card');
 
   const [response, setResponse] = useState<SwapiResponse>({
     count: 0,
@@ -32,7 +35,7 @@ export function Search() {
   const fetchResults = async () => {
     try {
       setIsLoading(true);
-      const data = await People.getPage(page, q);
+      const data = await People.search(q, page);
       setIsLoading(false);
       setError(null);
       setResponse(data);
@@ -50,9 +53,20 @@ export function Search() {
     if (isLoading) return 'Loading...';
     const { results } = response;
     if (!response || !results.length) return 'No results :(';
-
     return results.map((data) => {
-      return <Card data={data} key={data.name} />;
+      const id = getIdByUrl(data.url);
+      return (
+        <Card
+          data={data}
+          onClick={() =>
+            setSearchParams(() => {
+              searchParams.set('card', id);
+              return searchParams;
+            })
+          }
+          key={data.name}
+        />
+      );
     });
   };
 
@@ -62,7 +76,7 @@ export function Search() {
   return (
     <div>
       <SearchInput />
-      <section className="card_list">
+      <div className={style.paginatorWrapper}>
         <Paginator
           pageCount={Math.ceil(count / 10)}
           currentPage={page}
@@ -74,7 +88,10 @@ export function Search() {
             })
           }
         />
-        {renderList()}
+      </div>
+      <section className={style.searchResults}>
+        <section className={style.cardList}>{renderList()}</section>
+        {cardId && <Outlet />}
       </section>
       <button
         type="button"
