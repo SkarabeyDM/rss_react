@@ -44,10 +44,9 @@ class SwapiCategory<T> {
 
   async search(searchTerm?: string, page = 1): Promise<SwapiSearchResult<T>> {
     let response;
-    if (searchTerm) {
+    if (typeof searchTerm === 'string') {
       response = request(`${this.endpoint}?page=${page}&search=${searchTerm}`);
-    }
-    response = request(`${this.endpoint}?page=${page}`);
+    } else response = request(`${this.endpoint}?page=${page}`);
 
     return response;
   }
