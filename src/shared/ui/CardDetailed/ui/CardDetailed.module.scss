@@ -1,0 +1,66 @@
+@import '../../style/variables.scss';
+
+$border-radius: 3rem;
+$border-radius-inner: 1.5rem;
+$cross-blur: 0.3rem;
+$cross-shadow: rgba(0, 0, 0, 1) 0 0 $cross-blur;
+$table-row-color: #222;
+
+.cardDetailed {
+  position: sticky;
+  background-color: $bg-color-dark;
+  color: whitesmoke;
+  transition: 0.3s ease;
+  transition-property: width;
+  max-width: 100%;
+  width: 310px;
+  max-height: fit-content;
+  padding: 1.5rem;
+  border-radius: $border-radius;
+  border-top-right-radius: 1.5rem;
+
+  &Image {
+    border-radius: $border-radius-inner;
+    width: 100%;
+  }
+
+  &Wrapper {
+    overflow: hidden;
+    border-radius: $border-radius-inner;
+  }
+
+  &Table {
+    width: 100%;
+    text-align: start;
+    border-collapse: collapse;
+
+    & * tr:nth-child(odd){
+      background-color: $bg-color;
+    }
+  }
+
+  &CloseButton {
+    position: absolute;
+    padding: 0;
+    top: 0;
+    right: 0;
+    min-width: $border-radius;
+    min-height: $border-radius;
+    aspect-ratio: 1;
+    border-radius: $border-radius-inner;
+    background-color: $bg-color-dark;
+    text-shadow: $cross-shadow;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    line-height: 1;
+
+    &:hover {
+      color: rgb(255, 180, 180);
+    }
+  }
+
+  &.closed {
+    width: 0;
+  }
+}

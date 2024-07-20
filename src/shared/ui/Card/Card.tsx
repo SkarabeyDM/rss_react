@@ -1,23 +1,20 @@
-import React, { Component } from "react";
-import "./style.css";
-import { swapiPeople } from "@shared/types/api";
+import type { IPeople } from 'swapi-ts';
+import { getImageByUrl } from '@shared/utils/utils';
+import type React from 'react';
+import style from './Card.module.scss';
 
-export type CardProps = Partial<swapiPeople>;
+export type CardProps = React.ComponentProps<'article'> & {
+  data: IPeople;
+};
 
-export class Card extends Component<CardProps> {
-  constructor(props: CardProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="card">
-        {Object.entries(this.props).map(([key, value]) => {
-          return (
-            <div className="card_line" key={key}>{`${key}: ${value}`}</div>
-          );
-        })}
+export function Card({ data, ...otherProps }: CardProps) {
+  const imageUrl = getImageByUrl(data.url) ?? '';
+  return (
+    <article className={style.card} {...otherProps}>
+      <div className={style.card_wrapper}>
+        <img className={style.card_image} src={imageUrl} alt={data.name} />
+        <h2>{data.name}</h2>
       </div>
-    );
-  }
+    </article>
+  );
 }
