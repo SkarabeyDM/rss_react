@@ -1,9 +1,8 @@
 @import '../../../shared/ui/style/variables.scss';
 
 .paginator {
-  --scale: min(3.9vmin, 1rem);
   display: flex;
-  font: /* calc(1.2 * var(--scale))  */monospace;
+  font: min(5vmin, 1.2rem)monospace;
   gap: min(0.5em, 1vw);
   max-width: 100%;
 

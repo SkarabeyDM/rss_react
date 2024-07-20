@@ -89,10 +89,14 @@ export function Search() {
           }
         />
       </div>
-      <section className={style.searchResults}>
-        <section className={style.cardList}>{renderList()}</section>
-        {cardId && <Outlet />}
-      </section>
+      <div className={style.searchResultsWrapper}>
+        <section className={style.searchResults}>
+          <section className={style.cardList}>{renderList()}</section>
+          <section className={style.cardDetailedWrapper}>
+            {cardId && <Outlet />}
+          </section>
+        </section>
+      </div>
       <button
         type="button"
         className="error_button"
