@@ -13,12 +13,6 @@ type SwapiResponse = {
   results: IPeople[];
 };
 
-export type SearchState = {
-  data?: SwapiResponse;
-  error: string | null;
-  isLoading: boolean;
-};
-
 export function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = +(searchParams.get('page') ?? 1);
