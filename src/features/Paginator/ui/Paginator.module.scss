@@ -2,13 +2,13 @@
 
 .paginator {
   display: flex;
-  font: min(5vmin, 1.2rem)monospace;
-  gap: min(0.5em, 1vw);
+  font: clamp(1rem, 5vmin, 1.2rem) monospace;
+  gap: clamp(1px, 0.5em, 1vw);
   max-width: 100%;
 
   &_button {
     $button: &;
-    padding: min(0.4em, 10vw);
+    padding: 0.4em;
 
     &_current {
       @extend #{$button};
