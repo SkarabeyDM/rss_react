@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import type { IPeople } from 'swapi-ts';
 import { People } from '@shared/api/swapi';
-import { CardDetailed } from '@shared/ui/CardDetailed';
+import { CardDetailed } from '@widgets/CardDetailed';
 import style from './Search.module.scss';
 
 type SwapiResponse = {
