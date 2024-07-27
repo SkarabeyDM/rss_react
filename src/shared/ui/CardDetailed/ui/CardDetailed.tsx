@@ -7,6 +7,15 @@ import style from './CardDetailed.module.scss';
 
 export type CardDetailedProps = React.ComponentProps<'article'>;
 
+const renderTableRows = (...rowsData: { title: string; value: string }[]) => {
+  return rowsData.map(({ title, value }) => (
+    <tr key={title}>
+      <th>{title}</th>
+      <td>{value}</td>
+    </tr>
+  ));
+};
+
 export function CardDetailed({ ...otherProps }: CardDetailedProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const cardId = +(searchParams.get('card') ?? 1);
@@ -37,34 +46,15 @@ export function CardDetailed({ ...otherProps }: CardDetailedProps) {
               <h2>{data.name}</h2>
               <table className={style.cardDetailedTable}>
                 <tbody>
-                  <tr>
-                    <th>Gender</th>
-                    <td>{data.gender}</td>
-                  </tr>
-                  <tr>
-                    <th>Birth year</th>
-                    <td>{data.birth_year}</td>
-                  </tr>
-                  <tr>
-                    <th>Height</th>
-                    <td>{data.height}</td>
-                  </tr>
-                  <tr>
-                    <th>Mass</th>
-                    <td>{data.mass}</td>
-                  </tr>
-                  <tr>
-                    <th>Eye color</th>
-                    <td>{data.eye_color}</td>
-                  </tr>
-                  <tr>
-                    <th>Hair color</th>
-                    <td>{data.hair_color}</td>
-                  </tr>
-                  <tr>
-                    <th>Skin color</th>
-                    <td>{data.skin_color}</td>
-                  </tr>
+                  {renderTableRows(
+                    { title: 'Gender', value: data.gender },
+                    { title: 'Birth year', value: data.birth_year },
+                    { title: 'Height', value: data.height },
+                    { title: 'Mass', value: data.mass },
+                    { title: 'Eye color', value: data.eye_color },
+                    { title: 'Hair color', value: data.hair_color },
+                    { title: 'Body color', value: data.skin_color }
+                  )}
                 </tbody>
               </table>
             </div>
