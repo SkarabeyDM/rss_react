@@ -1,4 +1,4 @@
-@import '../../style/variables.scss';
+@import '@shared/style/variables.scss';
 
 $border-radius: 3rem;
 $border-radius-inner: 1.5rem;
@@ -34,7 +34,7 @@ $table-row-color: #222;
     text-align: start;
     border-collapse: collapse;
 
-    & * tr:nth-child(odd){
+    & * tr:nth-child(odd) {
       background-color: $bg-color;
     }
   }
