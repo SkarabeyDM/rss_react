@@ -58,9 +58,9 @@ $table-row-color: #222;
     &:hover {
       color: rgb(255, 180, 180);
     }
-  }
 
-  &.closed {
-    width: 0;
+    &:active{
+      transform: scale(0.8);
+    }
   }
 }
