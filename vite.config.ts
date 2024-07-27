@@ -23,12 +23,16 @@ export default defineConfig(() => {
           find: '@entities',
           replacement: resolve(__dirname, './src/entities'),
         },
+        {
+          find: '@style',
+          replacement: resolve(__dirname, './src/shared/style'),
+        },
       ],
     },
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "@shared/style/variables.scss" as *;',
+          additionalData: '@use "@shared/style/vars.scss" as *;',
         },
       },
     },

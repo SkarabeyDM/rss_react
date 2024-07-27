@@ -1,5 +1,5 @@
 import type { IPeople } from 'swapi-ts';
-import { getImageByUrl } from '@shared/utils/utils';
+import { getImageByUrl } from '@shared/utils';
 import type React from 'react';
 import style from './Card.module.scss';
 

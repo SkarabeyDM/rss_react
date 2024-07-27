@@ -61,17 +61,21 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: $bg-color-dark;
   cursor: pointer;
-  transition: border-color 0.25s, transform 0.1s;
+  transition:
+    border-color 0.25s,
+    transform 0.1s;
   -webkit-tap-highlight-color: transparent;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:active {
-  outline: 4px auto -webkit-focus-ring-color;
-  transform: scale(0.9);
+
+  &:hover {
+    border-color: #646cff;
+  }
+
+  &:active {
+    // outline: 4px auto -webkit-focus-ring-color;
+    transform: scale(0.9);
+  }
 }
 
 @media (prefers-color-scheme: light) {

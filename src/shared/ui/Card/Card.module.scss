@@ -1,8 +1,10 @@
+@import '@style/vars.scss';
+
 .card {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  background: #1c1c1c;
+  background: $bg-color-dark;
   border-radius: 2rem;
   padding: 1rem;
   max-width: fit-content;
@@ -27,7 +29,7 @@
     border-radius: 1rem;
   }
 
-  &:active{
+  &:active {
     transform: scale(0.95);
   }
 }
