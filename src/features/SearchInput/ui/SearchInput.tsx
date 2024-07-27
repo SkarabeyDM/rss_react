@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SEARCH_TERM_KEY } from '@shared/const';
 import { useSearchParams } from 'react-router-dom';
+import { useLocalStorage } from '@shared/hooks';
 
 export type SearchInputState = {
   searchTerm: string;
@@ -11,10 +12,12 @@ export type SearchInputProps = {
 };
 
 export function SearchInput({ onSubmit = () => {} }: SearchInputProps) {
-  const [, setSearchParams] = useSearchParams();
-  const [searchTerm, setSearchTerm] = useState(
-    localStorage.getItem(SEARCH_TERM_KEY) ?? ''
+  const [localSearchTerm, setLocalSearchTerm] = useLocalStorage(
+    SEARCH_TERM_KEY,
+    ''
   );
+  const [, setSearchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(localSearchTerm);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,12 +28,13 @@ export function SearchInput({ onSubmit = () => {} }: SearchInputProps) {
       return params;
     });
     onSubmit(trimmedSearchTerm);
-    localStorage.setItem(SEARCH_TERM_KEY, trimmedSearchTerm);
+    setLocalSearchTerm(trimmedSearchTerm);
   };
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     setSearchTerm(event.currentTarget.value);
   };
+
   return (
     <form className="search_input" onSubmit={handleSubmit}>
       <input
