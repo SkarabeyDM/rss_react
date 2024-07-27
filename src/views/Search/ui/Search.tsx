@@ -3,9 +3,10 @@ import { SearchInput } from '@features/SearchInput';
 import { Card } from '@shared/ui/Card';
 import { getIdByUrl } from '@shared/utils/utils';
 import { useEffect, useState } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import type { IPeople } from 'swapi-ts';
 import { People } from '@shared/api/swapi';
+import { CardDetailed } from '@shared/ui/CardDetailed';
 import style from './Search.module.scss';
 
 type SwapiResponse = {
@@ -87,7 +88,7 @@ export function Search() {
         <section className={style.searchResults}>
           <section className={style.cardList}>{renderList()}</section>
           <section className={style.cardDetailedWrapper}>
-            {cardId && <Outlet />}
+            {cardId && <CardDetailed />}
           </section>
         </section>
       </div>

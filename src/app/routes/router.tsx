@@ -1,6 +1,5 @@
 import { Layout } from '@app/Layout';
 import { Paths } from '@shared/const';
-import { CardDetailed } from '@shared/ui/CardDetailed';
 import { Search } from '@src/views/Search';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -15,7 +14,6 @@ export const router = createBrowserRouter(
         {
           path: `${Paths.Search}/:q?`,
           element: <Search />,
-          children: [{ path: '', element: <CardDetailed /> }],
         },
       ],
     },
