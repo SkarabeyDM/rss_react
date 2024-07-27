@@ -1,3 +1,4 @@
+import type { PaginatorProps } from '@features/Paginator';
 import { Paginator } from '@features/Paginator';
 import { SearchInput } from '@features/SearchInput';
 import { Card } from '@shared/ui/Card';
@@ -67,22 +68,23 @@ export function Search() {
 
   if (error) throw new Error();
   const { count } = response;
+  const paginatorProps: PaginatorProps = {
+    pageCount: Math.ceil(count / 10),
+    currentPage: page,
+    siblingCount: 1,
+    onChangePage(nextPage) {
+      setSearchParams((params) => {
+        params.set('page', nextPage.toString());
+        return params;
+      });
+    },
+  };
 
   return (
     <>
       <SearchInput />
       <div className={style.paginatorWrapper}>
-        <Paginator
-          pageCount={Math.ceil(count / 10)}
-          currentPage={page}
-          siblingCount={1}
-          onChangePage={(nextPage) =>
-            setSearchParams((params) => {
-              params.set('page', nextPage.toString());
-              return params;
-            })
-          }
-        />
+        <Paginator {...paginatorProps} />
       </div>
       <div className={style.searchResultsWrapper}>
         <section className={style.searchResults}>
@@ -91,6 +93,9 @@ export function Search() {
             {cardId && <CardDetailed />}
           </section>
         </section>
+      </div>
+      <div className={style.paginatorWrapper}>
+        <Paginator {...paginatorProps} />
       </div>
       <button
         type="button"
