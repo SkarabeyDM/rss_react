@@ -2,7 +2,7 @@
 @import '@shared/style/vars.scss';
 
 * {
-  transition: all ease 0.1s;
+  transition: all ease 0.1s, background-color ease 0.3s, color ease 0.025s, box-shadow ease 0.5s;
   color: inherit;
 }
 
@@ -67,6 +67,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: var(--theme-l2);
+  box-shadow: var(--theme-shadow-s);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 

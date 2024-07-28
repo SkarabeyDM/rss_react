@@ -6,6 +6,8 @@ $border-radius: 1em;
   overflow: hidden;
   width: fit-content;
   border-radius: $border-radius;
+  background-color: var(--theme-l1);
+  box-shadow: var(--theme-shadow);
   gap: 0.1em;
 
   &Input {
@@ -24,5 +26,6 @@ $border-radius: 1em;
 
   &Button {
     border-radius: 0 $border-radius $border-radius 0;
+    box-shadow: none;
   }
 }
