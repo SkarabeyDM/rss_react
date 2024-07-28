@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SEARCH_TERM_KEY } from '@shared/const';
 import { useSearchParams } from 'react-router-dom';
 import { useLocalStorage } from '@shared/hooks';
+import style from './SearchInput.module.scss';
 
 export type SearchInputState = {
   searchTerm: string;
@@ -36,14 +37,14 @@ export function SearchInput({ onSubmit = () => {} }: SearchInputProps) {
   };
 
   return (
-    <form className="search_input" onSubmit={handleSubmit}>
+    <form className={style.searchInput} onSubmit={handleSubmit}>
       <input
         type="search"
-        className="search_input__input"
+        className={style.searchInputInput}
         defaultValue={searchTerm}
         onChange={handleChange}
       />
-      <button className="search_input__button" type="submit">
+      <button className={style.searchInputButton} type="submit">
         Search
       </button>
     </form>

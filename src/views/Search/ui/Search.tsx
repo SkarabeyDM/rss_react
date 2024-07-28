@@ -81,7 +81,7 @@ export function Search() {
   };
 
   return (
-    <>
+    <div className={style.searchWrapper}>
       <SearchInput />
       <div className={style.paginatorWrapper}>
         <Paginator {...paginatorProps} />
@@ -104,6 +104,6 @@ export function Search() {
       >
         ! Throw Error !
       </button>
-    </>
+    </div>
   );
 }
