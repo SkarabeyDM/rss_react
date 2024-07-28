@@ -2,7 +2,11 @@
 @import '@shared/style/vars.scss';
 
 * {
-  transition: all ease 0.1s, background-color ease 0.3s, color ease 0.025s, box-shadow ease 0.5s;
+  transition:
+    all ease 0.1s,
+    background-color ease 0.3s,
+    color ease 0.025s,
+    box-shadow ease 0.5s;
   color: inherit;
 }
 
@@ -49,9 +53,10 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+
+  &:hover {
+    color: #535bf2;
+  }
 }
 
 h1 {
@@ -68,11 +73,15 @@ button {
   font-family: inherit;
   background-color: var(--theme-l2);
   box-shadow: var(--theme-shadow-s);
-  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    border-color: #646cff;
+  @media (hover: hover) {
+    &:hover {
+      &:not(:disabled) {
+        border-color: #646cff;
+        cursor: pointer;
+      }
+    }
   }
 
   &:active {
@@ -80,15 +89,6 @@ button {
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+:disabled {
+  color: var(--theme-t1-disabled);
 }

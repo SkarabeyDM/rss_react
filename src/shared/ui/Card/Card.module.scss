@@ -28,12 +28,21 @@
     border-radius: 1rem;
   }
 
-  &Title{
+  &Title {
     padding-top: 1rem;
     padding-bottom: 0.5rem;
   }
 
+  @media (hover: hover) {
+    &:hover:not(:active){
+      transform: scale(1.1);
+      box-shadow: var(--theme-shadow-l);
+    }
+  }
+
   &:active {
     transform: scale(0.95);
+    box-shadow: var(--theme-shadow-s);
   }
+
 }
