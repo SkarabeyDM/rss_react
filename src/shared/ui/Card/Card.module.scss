@@ -33,16 +33,23 @@
     padding-bottom: 0.5rem;
   }
 
-  @media (hover: hover) {
-    &:hover:not(:active){
-      transform: scale(1.1);
-      box-shadow: var(--theme-shadow-l);
-    }
-  }
+  // @media (hover: hover) {
+  //   &:hover:not(:active){
+  //     transform: scale(1.1);
+  //     box-shadow: var(--theme-shadow-l);
+  //   }
+  // }
 
   &:active {
     transform: scale(0.95);
     box-shadow: var(--theme-shadow-s);
   }
 
+}
+
+.selectButton{
+  border-radius: 1rem;
+  text-transform: uppercase;
+  background-color: var(--theme-primary);
+  color: var(--theme-t-primary);
 }
