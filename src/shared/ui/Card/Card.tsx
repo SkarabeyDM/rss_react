@@ -13,7 +13,7 @@ export function Card({ data, ...otherProps }: CardProps) {
     <article className={style.card} {...otherProps}>
       <div className={style.card_wrapper}>
         <img className={style.card_image} src={imageUrl} alt={data.name} />
-        <h2>{data.name}</h2>
+        <h2 className={style.cardTitle}>{data.name}</h2>
       </div>
     </article>
   );

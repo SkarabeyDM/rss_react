@@ -34,6 +34,11 @@ $border-radius-inner: 1.5rem;
     }
   }
 
+  &Title {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
   &CloseButton {
     position: absolute;
     padding: 0;
@@ -53,7 +58,7 @@ $border-radius-inner: 1.5rem;
       color: var(--theme-err);
     }
 
-    &:active{
+    &:active {
       transform: scale(0.8);
     }
   }

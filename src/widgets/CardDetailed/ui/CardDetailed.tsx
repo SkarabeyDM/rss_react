@@ -43,7 +43,7 @@ export function CardDetailed({ ...otherProps }: CardDetailedProps) {
                 alt="Character"
                 className={style.cardDetailedImage}
               />
-              <h2>{data.name}</h2>
+              <h2 className={style.cardDetailedTitle}>{data.name}</h2>
               <table className={style.cardDetailedTable}>
                 <tbody>
                   {renderTableRows(

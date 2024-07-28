@@ -6,7 +6,7 @@
   border-radius: 2rem;
   padding: 1rem;
   max-width: fit-content;
-  width: 100%;
+  width: 16rem;
 
   transition-duration: 0.1s;
   -webkit-tap-highlight-color: transparent;
@@ -19,12 +19,17 @@
 
   &_image {
     object-fit: contain;
-    height: 20rem;
+    border-radius: 1rem;
   }
 
   &_wrapper {
     overflow: hidden;
     border-radius: 1rem;
+  }
+
+  &Title{
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
   }
 
   &:active {
