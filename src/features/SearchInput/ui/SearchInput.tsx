@@ -4,13 +4,13 @@ import { useSearchParams } from 'react-router-dom';
 import { useLocalStorage } from '@shared/hooks';
 import style from './SearchInput.module.scss';
 
-export type SearchInputState = {
+export interface SearchInputState {
   searchTerm: string;
-};
+}
 
-export type SearchInputProps = {
+export interface SearchInputProps {
   onSubmit?: (searchTerm: string) => void;
-};
+}
 
 export function SearchInput({ onSubmit = () => {} }: SearchInputProps) {
   const [localSearchTerm, setLocalSearchTerm] = useLocalStorage(

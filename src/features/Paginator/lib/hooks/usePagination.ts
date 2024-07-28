@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 
 export const DOTS = '...';
 
-export type UsePaginationProps = {
+export interface UsePaginationProps {
   pageCount: number;
   currentPage: number;
   siblingCount: number;
-};
+}
 
 const range = (start: number, end: number) => {
   const length = end - start + 1;

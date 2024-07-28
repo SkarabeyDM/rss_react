@@ -9,9 +9,9 @@ import {
 } from '@shared/store/slices/cardListSlice';
 import style from './Card.module.scss';
 
-export type CardProps = React.ComponentProps<'article'> & {
+export interface CardProps extends React.ComponentProps<'article'> {
   data: IPeople;
-};
+}
 
 export function Card({ data, ...otherProps }: CardProps) {
   const cards = useAppSelector(selectCardList);

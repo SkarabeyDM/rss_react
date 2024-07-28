@@ -2,12 +2,12 @@ import type { HTMLProps } from 'react';
 import { DOTS, usePagination } from '../lib/hooks';
 import style from './Paginator.module.scss';
 
-export type PaginatorProps = HTMLProps<HTMLDivElement> & {
+export interface PaginatorProps extends HTMLProps<HTMLDivElement> {
   pageCount: number;
   currentPage: number;
   siblingCount: number;
   onChangePage?: (nextPage: number) => void;
-};
+}
 
 export function Paginator({
   pageCount,
