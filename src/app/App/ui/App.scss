@@ -1,7 +1,7 @@
+@import './css-reset.scss';
 @import '@shared/style/vars.scss';
 
 * {
-  box-sizing: border-box;
   transition: all ease 0.1s;
   color: inherit;
 }
