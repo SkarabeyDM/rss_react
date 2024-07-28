@@ -12,6 +12,10 @@ export const getImageByUrl = (url: string) => {
   return `${ImageSource.People}${id}.jpg`;
 };
 
+export const toggle = <T>(value: T, a: T, b: T) => {
+  return value === b ? a : b;
+};
+
 // export const classNames = (...classes: (string | object)[]) => {
 //   const classList = classes.map(() => {})
 // };

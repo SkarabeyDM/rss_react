@@ -1,15 +1,10 @@
-@import '@style/vars.scss';
-
 $border-radius: 3rem;
 $border-radius-inner: 1.5rem;
-$cross-blur: 0.3rem;
-$cross-shadow: rgba(0, 0, 0, 1) 0 0 $cross-blur;
-$table-row-color: #222;
 
 .cardDetailed {
   position: sticky;
-  background-color: $bg-color-dark;
-  color: whitesmoke;
+  background-color: var(--theme-l2);
+  color: var(--theme-t1);
   transition: 0.3s ease;
   transition-property: width;
   max-width: 100%;
@@ -35,7 +30,7 @@ $table-row-color: #222;
     border-collapse: collapse;
 
     & * tr:nth-child(odd) {
-      background-color: $bg-color;
+      background-color: var(--theme-l1);
     }
   }
 
@@ -48,15 +43,14 @@ $table-row-color: #222;
     min-height: $border-radius;
     aspect-ratio: 1;
     border-radius: $border-radius-inner;
-    background-color: $bg-color-dark;
-    text-shadow: $cross-shadow;
+    background-color: var(--theme-l2);
     border: none;
     outline: none;
     font-size: 1.1rem;
     line-height: 1;
 
     &:hover {
-      color: rgb(255, 180, 180);
+      color: var(--theme-err);
     }
 
     &:active{

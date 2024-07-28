@@ -1,5 +1,3 @@
-@import '@style/vars.scss';
-
 .paginator {
   display: flex;
   font: clamp(1rem, 5vmin, 1.2rem) monospace;
@@ -13,7 +11,7 @@
     &_current {
       @extend #{$button};
       background-color: dodgerblue;
-      color: $bg-color-dark;
+      color: whitesmoke;
       cursor: default;
     }
   }

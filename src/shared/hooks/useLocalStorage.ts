@@ -4,7 +4,9 @@ export const useLocalStorage = (
   key: string,
   defValue: string
 ): [string, (state: string) => void] => {
-  const [state, setState] = useState(localStorage.getItem(key) ?? defValue);
+  const [state, setState] = useState(
+    (localStorage.getItem(key) ?? defValue) as string
+  );
 
   useEffect(() => {
     localStorage.setItem(key, state);
