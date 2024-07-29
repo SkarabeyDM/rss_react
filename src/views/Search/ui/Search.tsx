@@ -3,19 +3,12 @@ import { Paginator } from '@features/Paginator';
 import { SearchInput } from '@features/SearchInput';
 import { Card } from '@shared/ui/Card';
 import { getIdByUrl } from '@shared/utils/utils';
-import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import type { IPeople } from 'swapi-ts';
-import { People } from '@shared/api/swapi';
 import { CardDetailed } from '@widgets/CardDetailed';
 import { SelectionMenu } from '@features/SelectionMenu';
+import { SWAPI } from '@shared/api';
 import { ErrorButton } from '@features/ErrorButton';
 import style from './Search.module.scss';
-
-type SwapiResponse = {
-  count: number;
-  results: IPeople[];
-};
 
 export function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,34 +16,19 @@ export function Search() {
   const q = searchParams.get('q') ?? '';
   const cardId = searchParams.get('card');
 
-  const [response, setResponse] = useState<SwapiResponse>({
-    count: 0,
-    results: [],
+  const {
+    data: response,
+    isLoading,
+    error,
+  } = SWAPI.useGetPeopleBySearchQuery({
+    search: q,
+    page,
   });
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchResults = async () => {
-    try {
-      setIsLoading(true);
-      const data = await People.search(q, page);
-      setIsLoading(false);
-      setError(null);
-      setResponse(data);
-    } catch (err) {
-      setError('Failed to fetch results');
-      console.error('Fetch error:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchResults();
-  }, [searchParams]);
 
   const renderList = () => {
     if (isLoading) return 'Loading...';
+    if (!response || !response.results.length) return 'No results :(';
     const { results } = response;
-    if (!response || !results.length) return 'No results :(';
     return results.map((data) => {
       const id = getIdByUrl(data.url);
       return (
@@ -68,8 +46,9 @@ export function Search() {
     });
   };
 
-  if (error) throw new Error();
-  const { count } = response;
+  if (error) throw new Error('Fetching error');
+
+  const count = response?.count ?? 0;
   const paginatorProps: PaginatorProps = {
     pageCount: Math.ceil(count / 10),
     currentPage: page,

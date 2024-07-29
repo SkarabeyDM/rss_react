@@ -1,7 +1,7 @@
 import type React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getImageByUrl } from '@shared/utils/utils';
-import { SWAPI } from '@shared/api/swapri2';
+import { SWAPI } from '@shared/api';
 import style from './CardDetailed.module.scss';
 
 export type CardDetailedProps = React.ComponentProps<'article'>;
