@@ -27,7 +27,7 @@ export function SelectionMenu() {
       </button>
       <a
         href={`data:text/csv;charset=utf-8, "sep=,"\n${csv}`}
-        download={`sw_chars_${cards.length}.csv`}
+        download={`${cards.length}_sw_people.csv`}
       >
         <button
           type="button"
