@@ -10,8 +10,8 @@
 
     &_current:disabled {
       @extend #{$button};
-      background-color: dodgerblue;
-      color: whitesmoke;
+      background-color: var(--theme-primary);
+      color: var(--theme-t-primary);
       cursor: default;
     }
   }

@@ -51,11 +51,11 @@ body {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--theme-primary);
   text-decoration: inherit;
 
   &:hover {
-    color: #535bf2;
+    color: var(--theme-primary);
   }
 }
 
@@ -78,7 +78,7 @@ button {
   @media (hover: hover) {
     &:hover {
       &:not(:disabled) {
-        border-color: #646cff;
+        border-color: var(--theme-primary);
         cursor: pointer;
       }
     }
