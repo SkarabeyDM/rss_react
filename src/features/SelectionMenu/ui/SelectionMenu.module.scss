@@ -2,6 +2,7 @@ $bottom-position: 2rem;
 
 .selectionMenu {
   position: fixed;
+  z-index: 1;
   display: flex;
   gap: 1rem;
   bottom: $bottom-position;
