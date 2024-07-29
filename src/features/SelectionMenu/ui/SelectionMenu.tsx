@@ -2,18 +2,24 @@ import { useAppDispatch, useAppSelector } from '@shared/hooks/storeHooks';
 import { clear, selectCardList } from '@shared/store/slices/cardListSlice';
 import classNames from 'classnames';
 import { stringify } from 'csv-stringify/browser/esm/sync';
+import type { IPeople } from 'swapi-ts';
+import type { EntityState } from '@reduxjs/toolkit';
 import style from './SelectionMenu.module.scss';
+
+const createCSV = (cards: EntityState<IPeople, string>) => {
+  const list = Object.values(cards.entities);
+  if (!list.length) return '';
+  return stringify([
+    Object.keys(list[0]),
+    ...list.map((card) => Object.values(card)),
+  ]);
+};
 
 export function SelectionMenu() {
   const cards = useAppSelector(selectCardList);
   const dispatch = useAppDispatch();
-  const hasCards = !!cards.length;
-  const csv =
-    cards.length &&
-    stringify([
-      Object.keys(cards[0]),
-      ...cards.map((card) => Object.values(card)),
-    ]);
+  const cardCount = cards.ids.length;
+  const hasCards = !!cardCount;
 
   return (
     <div className={classNames(style.selectionMenu, hasCards || style.hide)}>
@@ -26,10 +32,10 @@ export function SelectionMenu() {
         Unselect All
       </button>
       <a
-        href={`data:text/csv;charset=utf-8, "sep=,"\n${csv}`}
-        download={`${cards.length}_sw_people.csv`}
+        href={`data:text/csv;charset=utf-8, "sep=,"\n${createCSV(cards)}`}
+        download={`${cardCount}_sw_people.csv`}
       >
-        <button type="button">Download{` (${cards.length})`}</button>
+        <button type="button">Download{` (${cardCount})`}</button>
       </a>
     </div>
   );

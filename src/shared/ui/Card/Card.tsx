@@ -18,7 +18,7 @@ export interface CardProps extends React.ComponentProps<'article'> {
 export function Card({ data, ...otherProps }: CardProps) {
   const cards = useAppSelector(selectCardList);
   const dispatch = useAppDispatch();
-  const checked = cards.find(({ url }) => url === data.url);
+  const checked = data.url in cards.entities;
   const imageUrl = getImageByUrl(data.url) ?? '';
 
   return (
@@ -32,8 +32,7 @@ export function Card({ data, ...otherProps }: CardProps) {
         )}
         type="button"
         onClick={() => {
-          if (checked) dispatch(remove(data));
-          else dispatch(add(data));
+          dispatch(checked ? remove(data.url) : add(data));
         }}
       >
         {checked ? 'Remove' : 'Add'}
