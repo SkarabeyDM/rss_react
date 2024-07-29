@@ -4,15 +4,8 @@
   gap: clamp(1px, 0.5em, 1vw);
   max-width: 100%;
 
-  &_button {
+  &Button {
     $button: &;
     padding: 0.4em;
-
-    &_current:disabled {
-      @extend #{$button};
-      background-color: var(--theme-primary);
-      color: var(--theme-t-primary);
-      cursor: default;
-    }
   }
 }

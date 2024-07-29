@@ -7,6 +7,8 @@ import {
   remove,
   selectCardList,
 } from '@shared/store/slices/cardListSlice';
+import classNames from 'classnames';
+import { globalClasses } from '@shared/style';
 import style from './Card.module.scss';
 
 export interface CardProps extends React.ComponentProps<'article'> {
@@ -24,7 +26,10 @@ export function Card({ data, ...otherProps }: CardProps) {
       <img className={style.card_image} src={imageUrl} alt={data.name} />
       <h2 className={style.cardTitle}>{data.name}</h2>
       <button
-        className={style.selectButton}
+        className={classNames(
+          style.selectButton,
+          checked || globalClasses.primary
+        )}
         type="button"
         onClick={() => {
           if (checked) dispatch(remove(data));

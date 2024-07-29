@@ -89,6 +89,7 @@ button {
   }
 }
 
-:disabled {
+:where(:disabled) {
   color: var(--theme-t1-disabled);
+  cursor: default;
 }

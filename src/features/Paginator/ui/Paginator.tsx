@@ -1,4 +1,6 @@
 import type { HTMLProps } from 'react';
+import classNames from 'classnames';
+import { globalClasses } from '@shared/style';
 import { DOTS, usePagination } from '../lib/hooks';
 import style from './Paginator.module.scss';
 
@@ -29,7 +31,7 @@ export function Paginator({
     <button
       type="button"
       disabled={currentPage <= 1}
-      className={style.paginator_button}
+      className={style.paginatorButton}
       onClick={prevPage}
     >
       &lt;
@@ -39,7 +41,7 @@ export function Paginator({
     <button
       type="button"
       disabled={currentPage >= pageCount}
-      className={style.paginator_button}
+      className={style.paginatorButton}
       onClick={nextPage}
     >
       &gt;
@@ -55,9 +57,10 @@ export function Paginator({
         const isCurrent = pageNumber === currentPage;
         const isDots = pageNumber === DOTS;
         const disabled = isCurrent || isDots;
-        const className = isCurrent
-          ? style.paginator_button_current
-          : style.paginator_button;
+        const className = classNames(
+          style.paginatorButton,
+          isCurrent && globalClasses.primary
+        );
         const onClick = disabled
           ? undefined
           : () => onChangePage(pageNumber as number);
