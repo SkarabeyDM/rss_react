@@ -1,8 +1,7 @@
 import type React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { getImageByUrl } from '@shared/utils/utils';
-import { People } from '@shared/api/swapi';
-import usePromise from 'react-use-promise';
+import { SWAPI } from '@shared/api/swapri2';
 import style from './CardDetailed.module.scss';
 
 export type CardDetailedProps = React.ComponentProps<'article'>;
@@ -19,7 +18,8 @@ const renderTableRows = (...rowsData: { title: string; value: string }[]) => {
 export function CardDetailed({ ...otherProps }: CardDetailedProps) {
   const [searchParams, setSearchParams] = useSearchParams();
   const cardId = +(searchParams.get('card') ?? 1);
-  const [data, , promiseState] = usePromise(() => People.get(cardId), [cardId]);
+  const { data, isLoading } = SWAPI.useGetPeopleByIdQuery(cardId);
+
   return (
     <article className={`${style.cardDetailed}`} {...otherProps}>
       <button
@@ -34,7 +34,7 @@ export function CardDetailed({ ...otherProps }: CardDetailedProps) {
       >
         ✖
       </button>
-      {promiseState !== 'resolved'
+      {isLoading
         ? 'Loading...'
         : data && (
             <div className={style.cardDetailedWrapper}>
