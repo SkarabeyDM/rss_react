@@ -9,6 +9,7 @@ import type { IPeople } from 'swapi-ts';
 import { People } from '@shared/api/swapi';
 import { CardDetailed } from '@widgets/CardDetailed';
 import { SelectionMenu } from '@features/SelectionMenu';
+import { ErrorButton } from '@features/ErrorButton';
 import style from './Search.module.scss';
 
 type SwapiResponse = {
@@ -99,13 +100,7 @@ export function Search() {
         <Paginator {...paginatorProps} />
       </div>
       <SelectionMenu />
-      <button
-        type="button"
-        className="error_button"
-        onClick={() => setError('Button Error')}
-      >
-        ! Throw Error !
-      </button>
+      <ErrorButton />
     </div>
   );
 }
