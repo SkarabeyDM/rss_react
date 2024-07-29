@@ -29,14 +29,7 @@ export function SelectionMenu() {
         href={`data:text/csv;charset=utf-8, "sep=,"\n${csv}`}
         download={`${cards.length}_sw_people.csv`}
       >
-        <button
-          type="button"
-          onClick={() => {
-            console.log(csv);
-          }}
-        >
-          Download{` (${cards.length})`}
-        </button>
+        <button type="button">Download{` (${cards.length})`}</button>
       </a>
     </div>
   );
