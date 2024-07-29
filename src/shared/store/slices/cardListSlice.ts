@@ -20,10 +20,13 @@ export const cardListSlice = createSlice({
       const key = typeof payload === 'string' ? payload : payload.url;
       state.cards = state.cards.filter(({ url }) => url !== key);
     },
+    clear(state) {
+      state.cards = [];
+    },
   },
 });
 
-export const { add, remove } = cardListSlice.actions;
+export const { add, remove, clear } = cardListSlice.actions;
 
 export const selectCardList = (state: RootState) => state.cardList.cards;
 

@@ -6,19 +6,19 @@
     justify-content: center;
     max-width: 100%;
     gap: 1rem;
-    &Wrapper{
+    &Wrapper {
       height: 100%;
     }
   }
 
-  &Wrapper{
+  &Wrapper {
     display: flex;
     flex-flow: column;
     align-items: center;
   }
 }
 
-.cardDetailedWrapper{
+.cardDetailedWrapper {
   box-sizing: content-box;
   align-self: stretch;
 }
