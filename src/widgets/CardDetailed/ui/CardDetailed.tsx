@@ -8,7 +8,7 @@ export type CardDetailedProps = React.ComponentProps<'article'>;
 
 const renderTableRows = (...rowsData: { title: string; value: string }[]) => {
   return rowsData.map(({ title, value }) => (
-    <tr key={title}>
+    <tr key={title} className={style.cardDetailedTableRow}>
       <th>{title}</th>
       <td>{value}</td>
     </tr>

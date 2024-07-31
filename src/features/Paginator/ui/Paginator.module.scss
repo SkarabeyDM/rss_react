@@ -7,5 +7,6 @@
   &Button {
     $button: &;
     padding: 0.4em;
+    will-change: color, background-color, box-shadow;
   }
 }

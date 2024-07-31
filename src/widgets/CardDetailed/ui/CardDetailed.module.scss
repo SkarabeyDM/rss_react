@@ -30,8 +30,8 @@ $border-radius-inner: 1.5rem;
     text-align: start;
     border-collapse: collapse;
 
-    & * tr:nth-child(odd) {
-      background-color: var(--theme-l1);
+    &Row:nth-child(odd) {
+      background-color: color-mix(in srgb, var(--theme-contrast) 10%, transparent);
     }
   }
 

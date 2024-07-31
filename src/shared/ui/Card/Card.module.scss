@@ -9,7 +9,6 @@
   max-width: fit-content;
   width: 16rem;
 
-  transition-duration: 0.1s;
   -webkit-tap-highlight-color: transparent;
 
   &_line {
@@ -33,8 +32,7 @@
     padding-bottom: 0.5rem;
   }
 
-  &:active {
-    transform: scale(0.95);
+  &:active, &:hover {
     box-shadow: var(--theme-shadow-s);
   }
 }
