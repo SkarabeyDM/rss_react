@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@shared/hooks/storeHooks';
 import { clear, selectCardList } from '@shared/store/slices/cardListSlice';
 import classNames from 'classnames';
 import { stringify } from 'csv-stringify/browser/esm/sync';
-import type { IPeople } from 'swapi-ts';
+import type { IPeople } from '@shared/types';
 import type { EntityState } from '@reduxjs/toolkit';
 import style from './SelectionMenu.module.scss';
 

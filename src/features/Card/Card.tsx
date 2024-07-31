@@ -1,4 +1,4 @@
-import type { IPeople } from 'swapi-ts';
+import type { IPeople } from '@shared/types';
 import { getImageByUrl } from '@shared/utils';
 import type React from 'react';
 import { useAppDispatch, useAppSelector } from '@shared/hooks/storeHooks';

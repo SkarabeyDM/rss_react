@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { IPeople } from 'swapi-ts';
+import type { IPeople } from '@shared/types';
 import { createEntityAdapter } from '@reduxjs/toolkit/react';
 import type { RootState } from '../store';
 

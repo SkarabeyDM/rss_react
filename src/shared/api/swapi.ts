@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { IPeople } from 'swapi-ts';
+import type { IPeople } from '@shared/types';
 
 export interface SwapiSearchResult<T> {
   count: number;
