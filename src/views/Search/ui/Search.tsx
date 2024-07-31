@@ -1,7 +1,7 @@
 import type { PaginatorProps } from '@features/Paginator';
 import { Paginator } from '@features/Paginator';
 import { SearchInput } from '@features/SearchInput';
-import { Card } from '@shared/ui/Card';
+import { Card } from '@features/Card';
 import { getIdByUrl } from '@shared/utils/utils';
 import { useSearchParams } from 'react-router-dom';
 import { CardDetailed } from '@widgets/CardDetailed';
