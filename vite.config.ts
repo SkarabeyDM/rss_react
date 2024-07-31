@@ -7,7 +7,6 @@ import { ghPages } from 'vite-plugin-gh-pages';
 export default defineConfig(() => {
   return {
     plugins: [react(), ghPages()],
-    base: '/rss_react/',
     resolve: {
       alias: [
         { find: '@src', replacement: resolve(__dirname, './src') },
