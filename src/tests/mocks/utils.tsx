@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { store } from '@shared/store';
+import { type Store, type RootState, setupStore } from '@shared/store';
 import { ThemeProvider } from '@shared/themes';
 import type { RenderOptions } from '@testing-library/react';
 import { render } from '@testing-library/react';
@@ -8,9 +8,18 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
+interface RenderWithProvidersOptions extends RenderOptions {
+  preloadedState?: RootState;
+  store?: Store;
+}
+
 export function renderWithProviders(
   ui: ReactNode,
-  renderOptions: RenderOptions = {}
+  {
+    preloadedState,
+    store = setupStore(preloadedState),
+    ...renderOptions
+  }: RenderWithProvidersOptions = {}
 ) {
   function Wrapper({ children }: PropsWithChildren) {
     const rtr = createMemoryRouter([{ path: '/', element: children }]);
@@ -30,5 +39,5 @@ export function renderWithProviders(
     ...renderOptions,
   });
 
-  return rendered;
+  return { ...rendered, store };
 }

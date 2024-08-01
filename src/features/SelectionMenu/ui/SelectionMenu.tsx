@@ -28,12 +28,14 @@ export function SelectionMenu() {
         onClick={() => {
           dispatch(clear());
         }}
+        aria-label="Unselect all"
       >
         Unselect All
       </button>
       <a
         href={`data:text/csv;charset=utf-8, "sep=,"\n${createCSV(cards)}`}
         download={`${cardCount}_sw_people.csv`}
+        aria-label="Download selected"
       >
         <button type="button">Download{` (${cardCount})`}</button>
       </a>

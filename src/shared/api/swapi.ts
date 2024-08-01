@@ -12,6 +12,7 @@ export interface SwapiSearchParams {
   search: string;
   page: number;
 }
+
 export const SWAPI = createApi({
   reducerPath: 'SWAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://swapi.dev/api' }),
