@@ -23,7 +23,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
         [theme]
       )}
     >
-      <div className={theme}>{children}</div>
+      {children}
     </ThemeContext.Provider>
   );
 }
