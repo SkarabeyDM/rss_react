@@ -22,9 +22,16 @@ export function Card({ data, ...otherProps }: CardProps) {
   const imageUrl = getImageByUrl(data.url) ?? '';
 
   return (
-    <article className={style.card} {...otherProps}>
-      <img className={style.card_image} src={imageUrl} alt={data.name} />
-      <h2 className={style.cardTitle}>{data.name}</h2>
+    <article className={style.card} {...otherProps} data-testid="card">
+      <img
+        className={style.card_image}
+        src={imageUrl}
+        alt={data.name}
+        data-testid="card-img"
+      />
+      <h2 className={style.cardTitle} data-testid="card-name">
+        {data.name}
+      </h2>
       <button
         className={classNames(
           style.selectButton,
@@ -34,6 +41,7 @@ export function Card({ data, ...otherProps }: CardProps) {
         onClick={() => {
           dispatch(checked ? remove(data.url) : add(data));
         }}
+        data-testid="card-selection-button"
       >
         {checked ? 'Remove' : 'Add'}
       </button>
