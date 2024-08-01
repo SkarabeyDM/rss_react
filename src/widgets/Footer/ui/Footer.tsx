@@ -3,7 +3,7 @@ import style from './Footer.module.scss';
 
 export function Footer() {
   return (
-    <footer className={style.footer}>
+    <footer className={style.footer} data-testid="footer">
       <nav className={style.navList}>
         <a
           href="https://rs.school/"

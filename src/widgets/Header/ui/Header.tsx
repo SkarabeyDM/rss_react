@@ -8,7 +8,7 @@ import style from './Header.module.scss';
 export function Header() {
   const { theme, setTheme } = useContext(ThemeContext);
   return (
-    <header className={style.header}>
+    <header className={style.header} data-testid="header">
       <nav>
         <ul className={style.navList}>
           <li>
