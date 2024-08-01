@@ -8,11 +8,7 @@ export interface SearchInputState {
   searchTerm: string;
 }
 
-export interface SearchInputProps {
-  onSubmit?: (searchTerm: string) => void;
-}
-
-export function SearchInput({ onSubmit = () => {} }: SearchInputProps) {
+export function SearchInput() {
   const [localSearchTerm, setLocalSearchTerm] = useLocalStorage(
     SEARCH_TERM_KEY,
     ''
@@ -28,7 +24,6 @@ export function SearchInput({ onSubmit = () => {} }: SearchInputProps) {
       params.set('q', trimmedSearchTerm);
       return params;
     });
-    onSubmit(trimmedSearchTerm);
     setLocalSearchTerm(trimmedSearchTerm);
   };
 
@@ -43,8 +38,13 @@ export function SearchInput({ onSubmit = () => {} }: SearchInputProps) {
         className={style.searchInputInput}
         defaultValue={searchTerm}
         onChange={handleChange}
+        aria-label="Search input"
       />
-      <button className={style.searchInputButton} type="submit">
+      <button
+        className={style.searchInputButton}
+        type="submit"
+        aria-label="Search button"
+      >
         Search
       </button>
     </form>
