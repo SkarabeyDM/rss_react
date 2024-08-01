@@ -7,14 +7,14 @@ import style from './Paginator.module.scss';
 export interface PaginatorProps extends HTMLProps<HTMLDivElement> {
   pageCount: number;
   currentPage: number;
-  siblingCount: number;
+  siblingCount?: number;
   onChangePage?: (nextPage: number) => void;
 }
 
 export function Paginator({
   pageCount,
   currentPage,
-  siblingCount,
+  siblingCount = 0,
   onChangePage = () => {},
   ...otherProps
 }: PaginatorProps) {
@@ -33,6 +33,7 @@ export function Paginator({
       disabled={currentPage <= 1}
       className={style.paginatorButton}
       onClick={prevPage}
+      aria-label="previous page"
     >
       &lt;
     </button>
@@ -43,6 +44,7 @@ export function Paginator({
       disabled={currentPage >= pageCount}
       className={style.paginatorButton}
       onClick={nextPage}
+      aria-label="next page"
     >
       &gt;
     </button>
@@ -51,7 +53,7 @@ export function Paginator({
   let dotsIndex = 0;
 
   return (
-    <div {...otherProps} className={style.paginator}>
+    <nav {...otherProps} role="navigation" className={style.paginator}>
       {prevPageButton}
       {...paginationRange.map((pageNumber) => {
         const isCurrent = pageNumber === currentPage;
@@ -77,12 +79,16 @@ export function Paginator({
             disabled={disabled}
             className={className}
             onClick={onClick}
+            aria-label={
+              typeof pageNumber === 'string' ? undefined : `page ${pageNumber}`
+            }
+            aria-current={isCurrent}
           >
             {pageNumber}
           </button>
         );
       })}
       {nextPageButton}
-    </div>
+    </nav>
   );
 }
