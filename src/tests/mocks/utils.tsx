@@ -11,6 +11,7 @@ import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 interface RenderWithProvidersOptions extends RenderOptions {
   preloadedState?: RootState;
   store?: Store;
+  router?: boolean;
 }
 
 export function renderWithProviders(
@@ -18,6 +19,7 @@ export function renderWithProviders(
   {
     preloadedState,
     store = setupStore(preloadedState),
+    router = true,
     ...renderOptions
   }: RenderWithProvidersOptions = {}
 ) {
@@ -28,7 +30,7 @@ export function renderWithProviders(
       <React.StrictMode>
         <Provider store={store}>
           <ThemeProvider>
-            <RouterProvider router={rtr} />
+            {router ? <RouterProvider router={rtr} /> : children}
           </ThemeProvider>
         </Provider>
       </React.StrictMode>
