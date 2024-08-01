@@ -3,6 +3,11 @@ import { useLocalStorage } from '@shared/hooks';
 import type { PropsWithChildren } from 'react';
 import { createContext, useMemo } from 'react';
 
+export interface ThemeContextValue {
+  theme: Themes;
+  setTheme: (theme: Themes) => void;
+}
+
 export const ThemeContext = createContext<{
   theme: string;
   setTheme: (theme: string) => void;
