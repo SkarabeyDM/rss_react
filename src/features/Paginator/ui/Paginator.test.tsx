@@ -1,6 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import type { PaginatorProps } from './Paginator';
 import { Paginator } from './Paginator';
+import { DOTS } from '../lib/hooks';
 
 describe('Paginator', () => {
   const renderPaginator = (props: PaginatorProps) => {
@@ -72,7 +73,33 @@ describe('Paginator', () => {
       onChangePage: cb,
     });
 
-    const dotElements = getAllByText('...');
+    const dotElements = getAllByText(DOTS);
     expect(dotElements.length).toBe(2);
+  });
+
+  it('10 with left dot segment', () => {
+    const pageCount = 10;
+    const currentPage = 9;
+    const { getAllByText } = renderPaginator({
+      currentPage,
+      pageCount,
+      siblingCount: 2,
+    });
+
+    const dotElements = getAllByText(DOTS);
+    expect(dotElements.length).toBe(1);
+  });
+
+  it('10 with right dot segment', () => {
+    const pageCount = 10;
+    const currentPage = 2;
+    const { getAllByText } = renderPaginator({
+      currentPage,
+      pageCount,
+      siblingCount: 2,
+    });
+
+    const dotElements = getAllByText(DOTS);
+    expect(dotElements.length).toBe(1);
   });
 });
