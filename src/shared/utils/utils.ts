@@ -16,6 +16,5 @@ export const toggle = <T>(value: T, a: T, b: T) => {
   return value === b ? a : b;
 };
 
-// export const classNames = (...classes: (string | object)[]) => {
-//   const classList = classes.map(() => {})
-// };
+export const lerp = (min: number, t: number, max: number) =>
+  min * (1 - t) + max * t;
