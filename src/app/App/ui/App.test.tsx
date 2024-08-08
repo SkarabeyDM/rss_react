@@ -3,7 +3,7 @@ import { App } from './App';
 
 describe('App', () => {
   const renderApp = () => {
-    const rendered = renderWithProviders(<App />, { router: false });
+    const rendered = renderWithProviders(<App />);
     const { getByText } = rendered;
     const mainPage = getByText('[Main Page]');
     return { ...rendered, mainPage };
