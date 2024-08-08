@@ -30,6 +30,7 @@
   &Title {
     padding-top: 1rem;
     padding-bottom: 0.5rem;
+    color: var(--theme-t1);
   }
 
   &:active, &:hover {
@@ -40,4 +41,5 @@
 .selectButton {
   border-radius: 1rem;
   text-transform: uppercase;
+  font-weight: 700;
 }

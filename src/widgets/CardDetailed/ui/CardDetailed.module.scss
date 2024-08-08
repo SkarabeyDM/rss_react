@@ -6,8 +6,6 @@ $border-radius-inner: 1.5rem;
   background-color: var(--theme-l2);
   color: var(--theme-t1);
   box-shadow: var(--theme-shadow);
-  transition: 0.3s ease;
-  transition-property: width;
   max-width: 100%;
   width: 310px;
   max-height: fit-content;
@@ -38,6 +36,7 @@ $border-radius-inner: 1.5rem;
   &Title {
     padding-top: 1rem;
     padding-bottom: 1rem;
+    color: var(--theme-t1);
   }
 
   &CloseButton {
@@ -49,7 +48,6 @@ $border-radius-inner: 1.5rem;
     min-height: $border-radius;
     aspect-ratio: 1;
     border-radius: $border-radius-inner;
-    background-color: var(--theme-l2);
     box-shadow: none;
     border: none;
     outline: none;

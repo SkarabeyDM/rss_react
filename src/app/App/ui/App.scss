@@ -9,7 +9,9 @@
     background-color ease 0.3s,
     color linear 0.15s,
     box-shadow ease 0.5s;
-  color: inherit;
+
+  will-change: color, background-color, box-shadow;
+  // color: inherit;
 }
 
 .app {
@@ -76,6 +78,7 @@ button {
   font-family: inherit;
   background-color: var(--theme-l2);
   box-shadow: var(--theme-shadow-s);
+  color: var(--theme-t1);
   -webkit-tap-highlight-color: transparent;
 
   @media (hover: hover) {
