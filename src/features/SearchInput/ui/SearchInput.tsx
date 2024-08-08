@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SEARCH_TERM_KEY } from '@shared/const';
 import { useSearchParams } from 'react-router-dom';
 import { useLocalStorage } from '@shared/hooks';
+import { dice } from '@shared/utils/random';
 import style from './SearchInput.module.scss';
 
 export interface SearchInputState {
@@ -37,6 +38,7 @@ export function SearchInput() {
         type="search"
         className={style.searchInputInput}
         defaultValue={searchTerm}
+        placeholder={dice<string>('jar', 'luk', 'R2', 'boba', 'wat', 'bib')}
         onChange={handleChange}
         aria-label="Search input"
       />
