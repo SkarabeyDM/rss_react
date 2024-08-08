@@ -3,7 +3,7 @@ import { Layout } from './Layout';
 
 describe('Layout', () => {
   const renderLayout = () => {
-    const rendered = renderWithProviders(<Layout />);
+    const rendered = renderWithProviders(<Layout />, { router: {} });
     const { getByTestId } = rendered;
     const header = getByTestId('header');
     const footer = getByTestId('footer');

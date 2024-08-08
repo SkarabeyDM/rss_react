@@ -1,3 +1,4 @@
+/* eslint-disable react-compiler/react-compiler */
 /* eslint-disable import/no-extraneous-dependencies */
 import { type Store, type RootState, setupStore } from '@shared/store';
 import { ThemeProvider } from '@shared/themes';
@@ -6,12 +7,14 @@ import { render } from '@testing-library/react';
 import type { PropsWithChildren, ReactNode } from 'react';
 import React from 'react';
 import { Provider } from 'react-redux';
+import type { MemoryRouterProps } from 'react-router-dom';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
 interface RenderWithProvidersOptions extends RenderOptions {
   preloadedState?: RootState;
   store?: Store;
-  router?: boolean;
+  router?: Omit<MemoryRouterProps, 'children'>;
+  path?: string;
 }
 
 export function renderWithProviders(
@@ -19,19 +22,25 @@ export function renderWithProviders(
   {
     preloadedState,
     store = setupStore(preloadedState),
-    router = true,
+    router,
+    path = '*',
     ...renderOptions
   }: RenderWithProvidersOptions = {}
 ) {
   function Wrapper({ children }: PropsWithChildren) {
-    const rtr = createMemoryRouter([{ path: '/', element: children }]);
+    const renderRouter = () => {
+      if (!router) return children;
+      return (
+        <RouterProvider
+          router={createMemoryRouter([{ path, element: children }], router)}
+        />
+      );
+    };
 
     return (
       <React.StrictMode>
         <Provider store={store}>
-          <ThemeProvider>
-            {router ? <RouterProvider router={rtr} /> : children}
-          </ThemeProvider>
+          <ThemeProvider>{renderRouter()}</ThemeProvider>
         </Provider>
       </React.StrictMode>
     );

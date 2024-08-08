@@ -16,6 +16,7 @@
       "@entities/*": ["./src/entities/*"],
       "@shared/*": ["./src/shared/*"],
       "@style/*": ["./src/shared/style/*"],
+      "@tests/*": ["./src/tests/*"],
       "@src/*": ["./src/*"]
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }],

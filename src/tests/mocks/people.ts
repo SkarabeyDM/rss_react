@@ -1,4 +1,6 @@
-export const r2d2 = {
+import type { IPeople } from '@shared/types';
+
+export const r2d2: IPeople = {
   name: 'R2-D2',
   height: '96',
   mass: '32',

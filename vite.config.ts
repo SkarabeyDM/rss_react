@@ -14,6 +14,7 @@ export default defineConfig(() => {
         { find: '@app', replacement: resolve(__dirname, './src/app') },
         { find: '@widgets', replacement: resolve(__dirname, './src/widgets') },
         { find: '@pages', replacement: resolve(__dirname, './src/pages') },
+        { find: '@tests', replacement: resolve(__dirname, './src/tests') },
         {
           find: '@features',
           replacement: resolve(__dirname, './src/features'),

@@ -4,7 +4,7 @@ import { SearchInput } from './SearchInput';
 
 describe('SearchInput', () => {
   const renderSearchInput = () => {
-    const rendered = renderWithProviders(<SearchInput />);
+    const rendered = renderWithProviders(<SearchInput />, { router: {} });
     const { getByRole, getByLabelText } = rendered;
     const inputElement = getByLabelText('Search input') as HTMLInputElement;
     const buttonElement = getByRole('button') as HTMLButtonElement;
