@@ -1,0 +1,101 @@
+@import './css-reset.scss';
+@import '@shared/style/vars.scss';
+
+*,
+*::after,
+*::before {
+  transition:
+    all ease 0.2s allow-discrete,
+    background-color ease 0.3s,
+    color linear 0.15s,
+    box-shadow ease 0.5s;
+
+  will-change: color, background-color, box-shadow;
+  // color: inherit;
+}
+
+.app {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--theme-t1);
+  background-color: var(--theme-l1);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  margin: 0;
+  display: flex;
+  place-items: start;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+body {
+  all: unset;
+}
+
+.wrapper {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem min(2rem, 2vw);
+  text-align: center;
+}
+
+.error_button {
+  z-index: 10;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+a {
+  font-weight: 500;
+  color: var(--theme-primary);
+  text-decoration: inherit;
+
+  &:hover {
+    color: var(--theme-primary);
+  }
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--theme-l2);
+  box-shadow: var(--theme-shadow-s);
+  color: var(--theme-t1);
+  -webkit-tap-highlight-color: transparent;
+
+  @media (hover: hover) {
+    &:hover {
+      &:not(:disabled) {
+        border-color: var(--theme-primary);
+        cursor: pointer;
+      }
+    }
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+:where(:disabled) {
+  color: var(--theme-t1-disabled);
+  cursor: default;
+}
