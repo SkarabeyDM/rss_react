@@ -4,12 +4,16 @@ export const useLocalStorage = (
   key: string,
   defValue: string
 ): [string, (state: string) => void] => {
+  const hasWindow = typeof window !== 'undefined';
+
   const [state, setState] = useState(
-    (localStorage.getItem(key) ?? defValue) as string
+    (hasWindow
+      ? window.localStorage.getItem(key) ?? defValue
+      : defValue) as string
   );
 
   useEffect(() => {
-    localStorage.setItem(key, state);
+    if (hasWindow) window.localStorage.setItem(key, state);
   }, [key, state]);
 
   return [state, setState];
