@@ -53,7 +53,12 @@ export function Paginator({
   let dotsIndex = 0;
 
   return (
-    <nav {...otherProps} role="navigation" className={style.paginator}>
+    <nav
+      {...otherProps}
+      role="navigation"
+      className={style.paginator}
+      data-testid="paginator"
+    >
       {prevPageButton}
       {...paginationRange.map((pageNumber) => {
         const isCurrent = pageNumber === currentPage;

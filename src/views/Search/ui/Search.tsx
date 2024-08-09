@@ -26,8 +26,9 @@ export function Search() {
   });
 
   const renderList = () => {
-    if (isLoading) return 'Loading...';
-    if (!response || !response.results.length) return 'No results :(';
+    if (isLoading) return <span>Loading...</span>;
+    if (!response || !response.results.length)
+      return <span>No results :(</span>;
     const { results } = response;
     return results.map((data) => {
       const id = getIdByUrl(data.url);
@@ -62,14 +63,16 @@ export function Search() {
   };
 
   return (
-    <div className={style.searchWrapper}>
+    <div className={style.searchWrapper} data-testid="search">
       <SearchInput />
       <div className={style.paginatorWrapper}>
         <Paginator {...paginatorProps} />
       </div>
       <div className={style.searchResultsWrapper}>
         <section className={style.searchResults}>
-          <section className={style.cardList}>{renderList()}</section>
+          <section className={style.cardList} data-testid="card-list">
+            {renderList()}
+          </section>
           <section className={style.cardDetailedWrapper}>
             {cardId && <CardDetailed />}
           </section>
