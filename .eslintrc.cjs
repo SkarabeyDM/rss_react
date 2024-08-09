@@ -52,6 +52,7 @@ module.exports = {
           'test.{ts,tsx}', // repos with a single test file
           'test-*.{ts,tsx}', // repos with multiple top-level test files
           '**/*{.,_}{test,spec}.{ts,tsx}', // tests where the extension or filename suffix denotes that it is a test
+          '**/next.config.mjs',
           '**/vitest.config.js', // vitest config
           '**/vitest-setup.ts', // vitest setup
         ],

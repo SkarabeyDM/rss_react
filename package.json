@@ -6,6 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "n:dev": "next dev",
+    "n:build": "next build",
+    "n:start": "next start",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "build": "vite build",

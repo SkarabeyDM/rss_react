@@ -18,22 +18,29 @@
       "@tests/*": ["./src/tests/*"],
       "@src/*": ["./src/*"]
     },
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" },
+      { "name": "next" }
+    ],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
+    "allowJs": true,
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "moduleDetection": "force",
+    "esModuleInterop": true,
+    "incremental": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
     "types": ["vitest/globals"]
   },
   "include": [
@@ -41,6 +48,10 @@
     "vite.config.ts",
     "vitest.config.js",
     "vitest-setup.ts",
+    "next.config.mjs",
+    "./dist/types/**/*.ts",
+    "./next-env-.d.ts",
     "src/**/*"
-  ]
+  ],
+  "exclude": ["./node_modules"]
 }
