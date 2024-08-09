@@ -2,7 +2,7 @@ import { Paths, Themes } from '@shared/const';
 import { ThemeContext } from '@shared/themes/ThemeContext';
 import { toggle } from '@shared/utils';
 import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
 import style from './Header.module.scss';
 
 export function Header() {
@@ -12,13 +12,13 @@ export function Header() {
       <nav>
         <ul className={style.navList}>
           <li>
-            <NavLink to={Paths.Main}>Home</NavLink>
+            <Link href={Paths.Main}>Home</Link>
           </li>
           <li>
-            <NavLink to={Paths.Search}>Search</NavLink>
+            <Link href={Paths.Search}>Search</Link>
           </li>
           <li>
-            <NavLink to={Paths.NotFound}>404</NavLink>
+            <Link href={Paths.NotFound}>404</Link>
           </li>
         </ul>
       </nav>
