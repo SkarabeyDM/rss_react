@@ -136,7 +136,7 @@ export const PEOPLE_FIRST_PAGE: SwapiSearchResult<IPeople> = {
 
 export const PEOPLE_SECOND_PAGE: SwapiSearchResult<IPeople> = {
   count: 10,
-  next: 'https://swapi.dev/api/people/?page=3',
+  next: null,
   previous: 'https://swapi.dev/api/people/?page=1',
   results: [
     {
