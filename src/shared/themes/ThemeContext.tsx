@@ -1,3 +1,5 @@
+'use client';
+
 import { Themes } from '@shared/const';
 import { useLocalStorage } from '@shared/hooks';
 import type { PropsWithChildren } from 'react';

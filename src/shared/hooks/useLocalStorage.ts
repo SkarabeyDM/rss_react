@@ -5,16 +5,23 @@ export const useLocalStorage = (
   defValue: string
 ): [string, (state: string) => void] => {
   const hasWindow = typeof window !== 'undefined';
+  const getLocalStorageItem = () => {
+    return hasWindow ? window.localStorage.getItem(key) ?? defValue : defValue;
+  };
 
-  const [state, setState] = useState(
-    (hasWindow
-      ? window.localStorage.getItem(key) ?? defValue
-      : defValue) as string
-  );
+  const [state, setState] = useState(getLocalStorageItem());
+  const setValue = (value: string) => {
+    if (hasWindow) window.localStorage.setItem(key, state);
+    setState(value);
+  };
 
   useEffect(() => {
     if (hasWindow) window.localStorage.setItem(key, state);
   }, [key, state]);
 
-  return [state, setState];
+  // useEffect(() => {
+  //   setState(getLocalStorageItem());
+  // }, []);
+
+  return [state, setValue];
 };

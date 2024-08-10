@@ -26,3 +26,4 @@ dist-ssr
 coverage
 .next
 next-env.d.ts
+tsconfig.tsbuildinfo

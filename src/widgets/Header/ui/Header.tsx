@@ -1,3 +1,5 @@
+'use client';
+
 import { Paths, Themes } from '@shared/const';
 import { ThemeContext } from '@shared/themes/ThemeContext';
 import { toggle } from '@shared/utils';

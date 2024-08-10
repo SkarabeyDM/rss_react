@@ -1,17 +1,28 @@
-import { router } from '@app/routes';
-import { RouterProvider } from 'react-router-dom';
-import './App.scss';
-import { useContext } from 'react';
-import { ThemeContext } from '@shared/themes';
-import classNames from 'classnames';
+import { ThemeProvider } from '@shared/themes';
+// import { Wrapper } from '@shared/ui';
+import { Footer } from '@widgets/Footer';
+import { Header } from '@widgets/Header';
+import type { AppProps } from 'next/app';
+import '@app/App/ui/App.scss';
+import dynamic from 'next/dynamic';
 
-export function App() {
-  const { theme } = useContext(ThemeContext);
+const Wrapper = dynamic(
+  () => import('@shared/ui').then((module) => module.Wrapper),
+  {
+    ssr: false,
+  }
+);
+
+export function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={classNames('app', theme)}>
-      <div className="wrapper">
-        <RouterProvider router={router} />
-      </div>
-    </div>
+    <ThemeProvider>
+      <Wrapper>
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+      </Wrapper>
+    </ThemeProvider>
   );
 }
