@@ -3,18 +3,19 @@ import { Paginator } from '@features/Paginator';
 import { SearchInput } from '@features/SearchInput';
 import { Card } from '@features/Card';
 import { getIdByUrl } from '@shared/utils/utils';
-import { useSearchParams } from 'react-router-dom';
 import { CardDetailed } from '@widgets/CardDetailed';
 import { SelectionMenu } from '@features/SelectionMenu';
 import { SWAPI } from '@shared/api';
 import { ErrorButton } from '@features/ErrorButton';
+import { useRouter } from 'next/router';
 import style from './Search.module.scss';
 
 export function Search() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const page = +(searchParams.get('page') ?? 1);
-  const q = searchParams.get('q') ?? '';
-  const cardId = searchParams.get('card');
+  const router = useRouter();
+  const { query } = router;
+  const page = +(query.page ?? 1);
+  const q = (query.q as string) ?? '';
+  const cardId = query.card as string;
 
   const {
     data: response,
@@ -36,10 +37,13 @@ export function Search() {
         <Card
           data={data}
           onClick={() =>
-            setSearchParams(() => {
-              searchParams.set('card', id);
-              return searchParams;
-            })
+            router.push(
+              {
+                query: { ...query, card: id },
+              },
+              '',
+              { scroll: false }
+            )
           }
           key={data.name}
         />
@@ -55,10 +59,7 @@ export function Search() {
     currentPage: page,
     siblingCount: 1,
     onChangePage(nextPage) {
-      setSearchParams((params) => {
-        params.set('page', nextPage.toString());
-        return params;
-      });
+      router.push({ query: { ...query, page: nextPage } });
     },
   };
 

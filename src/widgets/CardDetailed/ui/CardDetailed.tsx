@@ -1,7 +1,7 @@
 import type React from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { getImageByUrl } from '@shared/utils';
 import { SWAPI } from '@shared/api';
+import { useRouter } from 'next/router';
 import style from './CardDetailed.module.scss';
 
 export type CardDetailedProps = React.ComponentProps<'article'>;
@@ -20,8 +20,8 @@ const renderTableRows = (...rowsData: { title: string; value: string }[]) => {
 };
 
 export function CardDetailed({ ...otherProps }: CardDetailedProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const cardId = +(searchParams.get('card') ?? 1);
+  const router = useRouter();
+  const cardId = +(router.query.card ?? 1);
   const { data, isLoading } = SWAPI.useGetPeopleByIdQuery(cardId);
 
   return (
@@ -33,12 +33,11 @@ export function CardDetailed({ ...otherProps }: CardDetailedProps) {
       <button
         type="button"
         className={style.cardDetailedCloseButton}
-        onClick={() =>
-          setSearchParams(() => {
-            searchParams.delete('card');
-            return searchParams;
-          })
-        }
+        onClick={() => {
+          const params = { ...router.query };
+          delete params.card;
+          router.push({ query: params }, '', { scroll: false });
+        }}
         data-testid="close-button"
       >
         ✖

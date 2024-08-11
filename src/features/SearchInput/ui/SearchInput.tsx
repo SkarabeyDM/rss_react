@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { SEARCH_TERM_KEY } from '@shared/const';
-import { useSearchParams } from 'react-router-dom';
 import { useLocalStorage } from '@shared/hooks';
 import { dice } from '@shared/utils/random';
+import { useRouter } from 'next/router';
 import style from './SearchInput.module.scss';
 
 export interface SearchInputState {
@@ -14,17 +14,13 @@ export function SearchInput() {
     SEARCH_TERM_KEY,
     ''
   );
-  const [, setSearchParams] = useSearchParams();
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState(localSearchTerm);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedSearchTerm = searchTerm.trim();
-    setSearchParams(() => {
-      const params = new URLSearchParams();
-      params.set('q', trimmedSearchTerm);
-      return params;
-    });
+    router.push({ pathname: '/search', query: { q: trimmedSearchTerm } });
     setLocalSearchTerm(trimmedSearchTerm);
   };
 
