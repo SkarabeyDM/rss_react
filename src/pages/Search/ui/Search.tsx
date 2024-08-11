@@ -9,25 +9,16 @@ import { CardDetailed } from '@widgets/CardDetailed';
 import { SelectionMenu } from '@features/SelectionMenu';
 import { SWAPI } from '@shared/api';
 import { ErrorButton } from '@features/ErrorButton';
-import {
-  parseAsInteger,
-  parseAsString,
-  useQueryState,
-  useQueryStates,
-} from 'nuqs';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import style from './Search.module.scss';
 
 export function Search() {
-  const [query, setQuery] = useQueryStates(
-    {
-      q: parseAsString.withDefault(''),
-      page: parseAsInteger.withDefault(1),
-    },
-    { scroll: false }
-  );
-  const [cardId, setCardId] = useQueryState('card', { scroll: false });
-  const page = +(query.page ?? 1);
-  const q = (query.q as string) ?? '';
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const cardId = searchParams.get('card');
+  const page = +(searchParams.get('page') ?? 1);
+  const q = searchParams.get('q') ?? '';
 
   const {
     data: response,
@@ -45,7 +36,17 @@ export function Search() {
     const { results } = response;
     return results.map((data) => {
       const id = getIdByUrl(data.url);
-      return <Card data={data} onClick={() => setCardId(id)} key={data.name} />;
+      return (
+        <Card
+          data={data}
+          onClick={() => {
+            const params = new URLSearchParams(searchParams);
+            params.set('card', id);
+            router.push(`${pathname}?${params}`);
+          }}
+          key={data.name}
+        />
+      );
     });
   };
 
@@ -57,7 +58,9 @@ export function Search() {
     currentPage: page,
     siblingCount: 1,
     onChangePage(nextPage) {
-      setQuery({ ...query, page: nextPage });
+      const params = new URLSearchParams(searchParams);
+      params.set('page', nextPage.toString());
+      router.push(`${pathname}?${params}`);
     },
   };
 

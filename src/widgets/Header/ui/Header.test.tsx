@@ -4,7 +4,7 @@ import { fireEvent } from '@testing-library/react';
 import { Header } from './Header';
 
 describe('Header', () => {
-  const renderHeader = () => renderWithProviders(<Header />, { router: {} });
+  const renderHeader = () => renderWithProviders(<Header />);
 
   it('nav list', () => {
     const { getByText } = renderHeader();

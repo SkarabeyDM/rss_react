@@ -1,7 +1,7 @@
 import type React from 'react';
 import { getImageByUrl } from '@shared/utils';
 import { SWAPI } from '@shared/api';
-import { parseAsInteger, useQueryState } from 'nuqs';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import style from './CardDetailed.module.scss';
 
 export type CardDetailedProps = React.ComponentProps<'article'>;
@@ -20,10 +20,10 @@ const renderTableRows = (...rowsData: { title: string; value: string }[]) => {
 };
 
 export function CardDetailed({ ...otherProps }: CardDetailedProps) {
-  const [cardId, setCardId] = useQueryState(
-    'card',
-    parseAsInteger.withDefault(1).withOptions({ scroll: false })
-  );
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathName = usePathname();
+  const cardId = +(searchParams.get('card') ?? 1);
   const { data, isLoading } = SWAPI.useGetPeopleByIdQuery(cardId);
 
   return (
@@ -36,7 +36,9 @@ export function CardDetailed({ ...otherProps }: CardDetailedProps) {
         type="button"
         className={style.cardDetailedCloseButton}
         onClick={() => {
-          setCardId(null);
+          const params = new URLSearchParams(searchParams);
+          params.delete('card');
+          router.replace(`${pathName}/?${params.toString()}`);
         }}
         data-testid="close-button"
       >

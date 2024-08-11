@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { SEARCH_TERM_KEY } from '@shared/const';
 import { useLocalStorage } from '@shared/hooks';
 import { dice } from '@shared/utils/random';
-import { useQueryState } from 'nuqs';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import style from './SearchInput.module.scss';
 
 export interface SearchInputState {
@@ -16,13 +16,18 @@ export function SearchInput() {
     SEARCH_TERM_KEY,
     ''
   );
-  const [, setQ] = useQueryState('q');
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState(localSearchTerm);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const trimmedSearchTerm = searchTerm.trim();
-    setQ(trimmedSearchTerm);
+    const params = new URLSearchParams(searchParams);
+    params.set('q', trimmedSearchTerm);
+    params.delete('page');
+    router.push(`${pathname}?${params}`);
     setLocalSearchTerm(trimmedSearchTerm);
   };
 
