@@ -1,33 +1,11 @@
 import { renderWithProviders, server } from '@tests/mocks';
-import { useState } from 'react';
 import { waitForElementToBeRemoved } from '@testing-library/react';
 import { PEOPLE_FIRST_PAGE } from '@tests/mocks/people';
 import { Search } from './Search';
 
-let mockSearchParam = '';
-
 describe('Search', () => {
-  vi.mock('react-router-dom', async () => ({
-    ...(await vi.importActual('react-router-dom')),
-    useSearchParams: () => {
-      const [params, setParams] = useState(
-        new URLSearchParams(mockSearchParam)
-      );
-      return [
-        params,
-        (newParams: string) => {
-          mockSearchParam = newParams;
-          setParams(new URLSearchParams(newParams));
-        },
-      ];
-    },
-  }));
-
   const renderSearch = () => {
-    const rendered = renderWithProviders(<Search />, {
-      path: '/search/:q?',
-      router: { initialEntries: ['/search?page=1'] },
-    });
+    const rendered = renderWithProviders(<Search />);
     const cardListElement = rendered.getByTestId('card-list');
     const paginatorElements = rendered.getAllByTestId('paginator');
 

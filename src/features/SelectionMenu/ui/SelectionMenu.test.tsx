@@ -2,6 +2,7 @@ import { renderWithProviders } from '@src/tests/mocks/utils';
 import { add } from '@shared/store/slices/cardListSlice';
 import { r2d2 } from '@src/tests/mocks/people';
 import { act, fireEvent } from '@testing-library/react';
+import { store } from '@shared/store';
 import { SelectionMenu } from './SelectionMenu';
 
 describe('SelectionMenu', () => {
@@ -24,7 +25,7 @@ describe('SelectionMenu', () => {
   });
 
   it('render with changing state', () => {
-    const { unselectAllButton, downloadLink, store } = renderSelectionMenu();
+    const { unselectAllButton, downloadLink } = renderSelectionMenu();
 
     act(() => {
       store.dispatch(add(r2d2));

@@ -1,34 +1,15 @@
 import { renderWithProviders, server } from '@tests/mocks';
 import { r2d2 } from '@tests/mocks/people';
 import { fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
-import { useState } from 'react';
+import mockRouter from 'next-router-mock';
 import { CardDetailed } from './CardDetailed';
 
 const id = 1;
-let mockSearchParam = `card=${id}`;
 
 describe('CardDetailed', () => {
-  vi.mock('react-router-dom', async () => ({
-    ...(await vi.importActual('react-router-dom')),
-    useSearchParams: () => {
-      const [params, setParams] = useState(
-        new URLSearchParams(mockSearchParam)
-      );
-      return [
-        params,
-        (newParams: string) => {
-          mockSearchParam = newParams;
-          setParams(new URLSearchParams(newParams));
-        },
-      ];
-    },
-  }));
-
+  mockRouter.push(`/?card=${id}`);
   const renderCardDetailed = () => {
-    const rendered = renderWithProviders(<CardDetailed />, {
-      path: '/people/:id',
-      router: { initialEntries: [`/people/${id}/`] },
-    });
+    const rendered = renderWithProviders(<CardDetailed />);
 
     const closeButton = rendered.getByTestId('close-button');
 
@@ -66,8 +47,8 @@ describe('CardDetailed', () => {
   it('close', async () => {
     const { closeButton } = renderCardDetailed();
 
-    expect(mockSearchParam).toContain('card');
+    expect(mockRouter.query.card).toBe(`${id}`);
     fireEvent.click(closeButton);
-    expect(mockSearchParam).not.toContain('card');
+    expect(mockRouter.query.card).toBe(undefined);
   });
 });
