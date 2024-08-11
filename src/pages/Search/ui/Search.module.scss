@@ -1,0 +1,39 @@
+.search {
+  &Results {
+    display: flex;
+    flex-flow: row wrap-reverse;
+    align-items: flex-end;
+    justify-content: center;
+    max-width: 100%;
+    gap: 1rem;
+    &Wrapper {
+      height: 100%;
+    }
+  }
+
+  &Wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+}
+
+.cardDetailedWrapper {
+  box-sizing: content-box;
+  align-self: stretch;
+}
+
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: fit-content;
+  flex: min-content;
+  gap: 1rem;
+}
+
+.paginatorWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}

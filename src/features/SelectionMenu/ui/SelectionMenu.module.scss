@@ -1,0 +1,19 @@
+$bottom-position: 2rem;
+
+.selectionMenu {
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  gap: 1rem;
+  bottom: $bottom-position;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: color-mix(in srgb, var(--theme-contrast) 20%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--theme-l2) 50%, transparent);
+  outline-offset: -2px;
+  backdrop-filter: blur(0.1rem) brightness(0.9);
+}
+
+.hide {
+  transform: translateY(calc(100% + $bottom-position));
+}

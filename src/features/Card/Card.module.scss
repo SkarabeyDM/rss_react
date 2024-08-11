@@ -1,0 +1,45 @@
+.card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background: var(--theme-l2);
+  box-shadow: var(--theme-shadow);
+  border-radius: 2rem;
+  padding: 1rem;
+  max-width: fit-content;
+  width: 16rem;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &_line {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  &_image {
+    object-fit: contain;
+    border-radius: 1rem;
+  }
+
+  &_wrapper {
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+
+  &Title {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    color: var(--theme-t1);
+  }
+
+  &:active, &:hover {
+    box-shadow: var(--theme-shadow-s);
+  }
+}
+
+.selectButton {
+  border-radius: 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
