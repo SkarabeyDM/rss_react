@@ -23,6 +23,12 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   plugins: ['react-refresh', 'react-compiler', '@typescript-eslint', 'vitest'],
+  overrides: [
+    {
+      files: ['./app/**/*.tsx'],
+      rules: { 'react-refresh/only-export-components': 'off' },
+    },
+  ],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
