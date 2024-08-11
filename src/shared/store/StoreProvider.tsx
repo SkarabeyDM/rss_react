@@ -1,10 +1,14 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
+import { useRef, type PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
-import { wrapper } from './store';
+import type { Store } from './store';
+import { setupStore } from './store';
 
 export function StoreProvider({ children }: PropsWithChildren) {
-  const store = wrapper.useStore();
-  return <Provider store={store}>{children}</Provider>;
+  const storeRef = useRef<Store>();
+  if (!storeRef.current) {
+    storeRef.current = setupStore();
+  }
+  return <Provider store={storeRef.current}>{children}</Provider>;
 }

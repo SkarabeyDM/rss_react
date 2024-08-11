@@ -1,3 +1,5 @@
+'use client';
+
 import type { PaginatorProps } from '@features/Paginator';
 import { Paginator } from '@features/Paginator';
 import { SearchInput } from '@features/SearchInput';
@@ -7,15 +9,25 @@ import { CardDetailed } from '@widgets/CardDetailed';
 import { SelectionMenu } from '@features/SelectionMenu';
 import { SWAPI } from '@shared/api';
 import { ErrorButton } from '@features/ErrorButton';
-import { useRouter } from 'next/router';
+import {
+  parseAsInteger,
+  parseAsString,
+  useQueryState,
+  useQueryStates,
+} from 'nuqs';
 import style from './Search.module.scss';
 
 export function Search() {
-  const router = useRouter();
-  const { query } = router;
+  const [query, setQuery] = useQueryStates(
+    {
+      q: parseAsString.withDefault(''),
+      page: parseAsInteger.withDefault(1),
+    },
+    { scroll: false }
+  );
+  const [cardId, setCardId] = useQueryState('card', { scroll: false });
   const page = +(query.page ?? 1);
   const q = (query.q as string) ?? '';
-  const cardId = query.card as string;
 
   const {
     data: response,
@@ -33,21 +45,7 @@ export function Search() {
     const { results } = response;
     return results.map((data) => {
       const id = getIdByUrl(data.url);
-      return (
-        <Card
-          data={data}
-          onClick={() =>
-            router.push(
-              {
-                query: { ...query, card: id },
-              },
-              '',
-              { scroll: false }
-            )
-          }
-          key={data.name}
-        />
-      );
+      return <Card data={data} onClick={() => setCardId(id)} key={data.name} />;
     });
   };
 
@@ -59,7 +57,7 @@ export function Search() {
     currentPage: page,
     siblingCount: 1,
     onChangePage(nextPage) {
-      router.push({ query: { ...query, page: nextPage } });
+      setQuery({ ...query, page: nextPage });
     },
   };
 

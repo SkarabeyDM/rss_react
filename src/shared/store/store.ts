@@ -2,7 +2,6 @@
 /* eslint-disable import/no-mutable-exports */
 import { configureStore } from '@reduxjs/toolkit';
 import { SWAPI } from '@shared/api';
-import { createWrapper } from 'next-redux-wrapper';
 import { cardListReducer } from './slices/cardListSlice';
 
 export let store = configureStore({
@@ -21,8 +20,6 @@ export const setupStore = () => {
   });
   return store;
 };
-
-export const wrapper = createWrapper(setupStore);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
