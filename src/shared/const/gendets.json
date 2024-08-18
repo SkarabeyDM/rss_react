@@ -1,0 +1,9 @@
+[
+  { "name": " ", "code": "0" },
+  { "name": "droid", "code": "1" },
+  { "name": "syth", "code": "2" },
+  { "name": "jedi", "code": "3" },
+  { "name": "male", "code": "4" },
+  { "name": "female", "code": "5" },
+  { "name": "mechanoid", "code": "6" }
+]
