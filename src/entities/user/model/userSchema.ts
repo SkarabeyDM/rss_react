@@ -47,24 +47,21 @@ export const userSchema = object({
     .minLowercase(1, 'Password must contain at least 1 lowercase letter')
     .minSymbols(1, 'Password must contain at least 1 special character'),
   passwordDuplicate: string().oneOf(
-    [yup.ref('password')],
+    [ref('password')],
     'Password must match',
   ),
-  gender: yup.string().required('Gender is required'),
-  country: yup
-    .string()
+  gender: string().required('Gender is required'),
+  country: string()
     .required('Country is required')
     .test(
       'country-is-exists',
       'The country must match with the list',
       isCountryExists,
     ),
-  terms: yup
-    .mixed<boolean | string>()
+  terms: mixed<boolean | string>()
     .required('Agreement is required')
     .test('is-agree', 'Agreement is required', isAgree),
-  upload: yup
-    .mixed<Blob | Blob[]>()
+  upload: mixed<Blob | Blob[]>()
     .required('Picture is required')
     .test('is-image', 'File type whether .png or .jpg', isImage)
     .test(
@@ -75,3 +72,18 @@ export const userSchema = object({
 })
 
 export type User = yup.InferType<typeof userSchema>
+
+export interface UserForm {
+  name: string;
+  age?: number;
+  email: string;
+  password: string;
+  passwordDuplicate?: string;
+  gender: string;
+  country: string;
+  upload?: Blob | Blob[];
+  uploadBase64?: string;
+  terms: string | boolean;
+  form?: 'controlled' | 'uncontrolled';
+  isRecent?: boolean;
+}
