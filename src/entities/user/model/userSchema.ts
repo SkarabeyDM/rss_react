@@ -4,7 +4,7 @@ import countriesJSON from '@shared/const/countries.json'
 
 YupPassword(yup)
 
-const { number, object, string } = yup
+const { number, object, string, mixed, ref } = yup
 
 const IMAGE_SIZE_LIMIT = 100
 
