@@ -34,6 +34,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       '@stylistic/jsx-one-expression-per-line': 'off',
+      '@stylistic/brace-style': 'off',
       '@stylistic/member-delimiter-style': [
         'error',
         { overrides: { interface: { multiline: { delimiter: 'semi' } } } },
