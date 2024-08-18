@@ -1,7 +1,9 @@
 import { initialErrors } from '@shared/const'
 import { ErrorMap } from '@shared/types'
+import classNames from 'classnames'
 import { PropsWithChildren } from 'react'
 import { FieldErrors } from 'react-hook-form'
+import style from './FieldSet.module.scss'
 
 interface FieldSetProps extends PropsWithChildren {
   label: string;
@@ -11,7 +13,7 @@ interface FieldSetProps extends PropsWithChildren {
 
 const errorsKeys = Object.keys(initialErrors)
 
-export const isCustomErrors = (data: unknown | ErrorMap): data is ErrorMap => {
+const isCustomErrors = (data: unknown | ErrorMap): data is ErrorMap => {
   if (typeof data !== 'object') return false
   return errorsKeys.every(
     key =>
@@ -30,9 +32,12 @@ export function FieldSet({
     ? errors[validationKey][0]
     : `${errors[validationKey]?.message || ''}`
   return (
-    <fieldset title={errorMessage}>
-      <span>{errorMessage}</span>
-      <div>
+    <fieldset
+      title={errorMessage}
+      className={classNames(style.fieldset, errorMessage && style.error)}
+    >
+      <span className={style.errorMsg}>{errorMessage}</span>
+      <div className={style.labelContainer}>
         <label htmlFor={validationKey}>{label}</label>
         {children}
       </div>

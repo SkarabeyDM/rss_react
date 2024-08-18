@@ -1,0 +1,20 @@
+$error-color: rgb(242, 122, 122);
+
+.fieldset {
+  border-radius: 0.5rem;
+  border: solid 0.1rem whitesmoke;
+}
+
+.error {
+  border-color: $error-color;
+}
+
+.errorMsg{
+  color: $error-color;
+}
+
+.labelContainer{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

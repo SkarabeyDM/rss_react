@@ -4,8 +4,9 @@ import { fileToBase64 } from '@shared/lib'
 import { useAppDispatch, useAppSelector } from '@shared/store'
 import { add, selectCountries, selectGenders } from '@shared/store/formSlice'
 import { FieldSet } from '@shared/ui/FieldSet'
+import { Form } from '@shared/ui/Form'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Form, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function ControlledForm() {
   const navigate = useNavigate()

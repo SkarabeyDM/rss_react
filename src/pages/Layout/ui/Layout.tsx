@@ -20,8 +20,8 @@ export function Layout() {
         <nav className={classNames(style.nav, globalStyle.shadow)}>
           {renderNavList(
             { path: PATHS.MAIN, text: 'Home' },
-            { path: PATHS.FORM, text: 'Form' },
-            { path: PATHS.HOOK_FORM, text: 'Hook Form' },
+            { path: PATHS.FORM, text: 'Uncontrolled' },
+            { path: PATHS.HOOK_FORM, text: 'Controlled' },
           )}
         </nav>
       </header>
