@@ -8,7 +8,7 @@ import { FormEvent, useState } from 'react'
 import { Form, useNavigate } from 'react-router-dom'
 import { ValidationError } from 'yup'
 
-export default function FormPage() {
+export default function UncontrolledForm() {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const countries = useAppSelector(selectCountries)

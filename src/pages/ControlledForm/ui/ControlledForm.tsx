@@ -1,4 +1,4 @@
-export default function HookFormPage() {
+export default function ControlledForm() {
   return (
     <div>HookFormPage</div>
   )
