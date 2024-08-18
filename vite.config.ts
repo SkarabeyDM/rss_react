@@ -10,6 +10,7 @@ export default defineConfig({
       { find: '@', replacement: resolve(__dirname, './src') },
       { find: '@shared', replacement: resolve(__dirname, './src/shared') },
       { find: '@style', replacement: resolve(__dirname, './src/shared/style') },
+      { find: '@entities', replacement: resolve(__dirname, './src/entities') },
       { find: '@app', replacement: resolve(__dirname, './src/app') },
       { find: '@widgets', replacement: resolve(__dirname, './src/widgets') },
       { find: '@pages', replacement: resolve(__dirname, './src/pages') },
