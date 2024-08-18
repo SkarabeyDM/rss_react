@@ -19,12 +19,14 @@ const isCountryExists = (country: string) => {
 const isImage = (files: InputFile) => {
   if (!files) return false
   const file = files instanceof Blob ? files : files[0]
+  if (!file) return false
   return !!file.type.match(/image\/(jpeg|jpj|png)/)
 }
 
 const isFileSizeInRange = (files: InputFile) => {
   if (!files) return false
   const file = files instanceof Blob ? files : files[0]
+  if (!file) return false
   return file.size <= IMAGE_SIZE_LIMIT * 1024
 }
 
@@ -47,10 +49,7 @@ export const userSchema = object({
     .minUppercase(1, 'Password must contain at least 1 upper letter')
     .minLowercase(1, 'Password must contain at least 1 lowercase letter')
     .minSymbols(1, 'Password must contain at least 1 special character'),
-  passwordDuplicate: string().oneOf(
-    [ref('password')],
-    'Password must match',
-  ),
+  passwordDuplicate: string().oneOf([ref('password')], 'Password must match'),
   gender: string().required('Gender is required'),
   country: string()
     .required('Country is required')
@@ -74,17 +73,8 @@ export const userSchema = object({
 
 export type User = yup.InferType<typeof userSchema>
 
-export interface UserForm {
-  name: string;
-  age?: number;
-  email: string;
-  password: string;
-  passwordDuplicate?: string;
-  gender: string;
-  country: string;
-  upload?: Blob | Blob[];
+export interface UserForm extends User {
   uploadBase64?: string;
-  terms: string | boolean;
   form?: 'controlled' | 'uncontrolled';
   isRecent?: boolean;
 }

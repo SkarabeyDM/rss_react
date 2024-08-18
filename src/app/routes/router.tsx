@@ -1,7 +1,7 @@
-import { FormPage } from '@pages/FormPage'
-import { HookFormPage } from '@pages/HookFormPage'
+import { ControlledForm } from '@pages/ControlledForm'
 import { Layout } from '@pages/Layout'
 import { MainPage } from '@pages/MainPage'
+import { UncontrolledForm } from '@pages/UncontrolledForm'
 import { PATHS } from '@shared/const'
 import { createBrowserRouter, RouteObject } from 'react-router-dom'
 
@@ -11,8 +11,8 @@ export const routeObject: RouteObject[] = [
     element: <Layout />,
     children: [
       { path: PATHS.MAIN, element: <MainPage /> },
-      { path: PATHS.FORM, element: <FormPage /> },
-      { path: PATHS.HOOK_FORM, element: <HookFormPage /> },
+      { path: PATHS.FORM, element: <UncontrolledForm /> },
+      { path: PATHS.HOOK_FORM, element: <ControlledForm /> },
     ],
   },
 ]

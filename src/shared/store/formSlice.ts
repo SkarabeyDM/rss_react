@@ -25,7 +25,7 @@ const testUsers: UserForm[] = [
     passwordDuplicate: '1!aA',
     country: 'Belarus',
     gender: 'male',
-    upload: undefined,
+    upload: [],
     uploadBase64: testImage1,
     terms: true,
   },

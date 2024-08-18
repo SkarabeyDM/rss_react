@@ -26,7 +26,7 @@ export default function UncontrolledForm() {
       navigate('/')
       if (form.upload instanceof Blob) {
         form.uploadBase64 = await fileToBase64(form.upload)
-        delete form.upload
+        form.upload = []
         form.isRecent = true
         dispatch(add(form))
       }

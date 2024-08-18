@@ -9,7 +9,7 @@ export function MainPage() {
       <h2>Choose a form</h2>
       <section>
         {users.map(userForm => (
-          <UserCard {...userForm} />
+          <UserCard {...userForm} key={Date.now()} />
         ))}
       </section>
     </div>
