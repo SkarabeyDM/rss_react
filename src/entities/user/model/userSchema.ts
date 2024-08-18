@@ -25,7 +25,7 @@ const isImage = (files: InputFile) => {
 const isFileSizeInRange = (files: InputFile) => {
   if (!files) return false
   const file = files instanceof Blob ? files : files[0]
-  return file.size <= IMAGE_SIZE_LIMIT
+  return file.size <= IMAGE_SIZE_LIMIT * 1024
 }
 
 export const userSchema = object({
