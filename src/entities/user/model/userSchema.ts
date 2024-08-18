@@ -37,6 +37,7 @@ export const userSchema = object({
     .required('Name is required'),
   age: number()
     .required('Age is required')
+    .typeError('Input a number')
     .positive('Age cannot be negative')
     .integer(`Input full years`),
   email: string().required('Email is required').email(`That's not an e-mail`),
