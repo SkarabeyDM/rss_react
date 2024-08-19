@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  list-style: none;
+  overflow: hidden;
+  width: fit-content;
+
+  background-color: var(--bg-l);
+  border-radius: 1rem;
+}
+
+.link:global {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-d);
+
+  &:hover {
+    background-color: var(--bg-l);
+  }
+}

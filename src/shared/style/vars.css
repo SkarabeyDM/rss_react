@@ -1,0 +1,9 @@
+:root {
+  --bg: #242424;
+  --bg-l: #363636;
+  --bg-d: #1e1e1e;
+
+  --primary: rgb(105, 138, 247);
+  --primary-l: rgb(149, 173, 253);
+  --primary-d: rgb(76, 113, 235);
+}
